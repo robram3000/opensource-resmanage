@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="main-container">
+    <form action="" class="form-wrapper">
+        {% crsf%}
+        <img src= "" alter = "no icons ">    
+        <div></div>
+        <div class="form-group">
+            <label for="">Email</label>
+            <input type = "textbox" required class = "text-box-1" placeholder=" Email"> 
+        </div>
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type = "password" required class = "text-box-1" placeholder=" Password">
+        </div>
+
+        <div class="Sub-divider"></div>
+        <div class="form-group">
+            <button type = "submit">Login</button>
+        </div>
+    </form>
+</main>
+{% endblock %}
