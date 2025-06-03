@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Mashiketta - Your Learning Platform">
+    <meta name="keywords" content="Mashiketta, Learning, Education, Online Courses">
+    <meta name="author" content="Mashiketta Team">
+    <title>Mashiketta</title>
+</head>
+<body>
+  {% block content %}
+        <main class="main-container">
+            <form action="" method="post" enctype="multipart/form-data" class="form-wrapper">
+                {% csrf_token %}
+                <img src="{% static 'images/icon.png' %}" alt="Login Icon">    
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email" required class="text-box-1" placeholder="Email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required class="text-box-1" placeholder="Password">
+                </div>
+
+                <div class="Sub-divider"></div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </main>
+{% endblock %}
+</body>
+</html>

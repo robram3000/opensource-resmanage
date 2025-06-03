@@ -3,9 +3,8 @@ from register_blueprint import register_blueprints
 
 def create_app(neutral_only=False):
     app = Flask(
-        __name__,
-        static_folder='static',
-        template_folder='templates'
+        __name__ ,template_folder='templates'
+        
     )
     
     register_blueprints(app, neutral_only=neutral_only)
