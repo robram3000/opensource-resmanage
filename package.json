@@ -1,0 +1,10 @@
+{
+  "name": "caps-wa-pos",
+  "version": "1.0.0","scripts": {
+  "sass:watch": "sass --watch _wapos/static/scss:_wapos/static/css --style compressed --load-path=_wapos/static/scss",
+  "sass:build": "sass _wapos/static/scss:_wapos/static/css --style compressed --load-path=_wapos/static/scss"
+},
+  "devDependencies": {
+    "sass": "^1.89.1"
+  }
+}

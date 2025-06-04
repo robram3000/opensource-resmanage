@@ -1,0 +1,89 @@
+@use '../base/variables' as *;
+@use "sass:color";
+
+.form-wrapper {
+  max-width: 700px;
+  width: 500px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  border-radius: $border-radius;
+  text-align: center;
+
+  img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: color.scale($text-color, $lightness: 10%);
+    }
+
+    .text-box-1 {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid color.scale($light-gray, $lightness: -10%);
+      border-radius: $border-radius;
+      font-size: 1rem;
+      transition: $transition;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+
+      &::placeholder {
+        color: color.scale($text-color, $lightness: 10%);
+      }
+    }
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: $primary-color;
+    color: $white;
+    border: none;
+    border-radius: $border-radius;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition;
+
+    &:hover {
+      background-color: $secondary-color;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .Sub-divider {
+    height: 1px;
+    background: color.adjust($light-gray, $lightness: -10%);
+    margin: 1.5rem 0;
+    position: relative;
+
+    &::before {
+      content: 'or';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: $white;
+      padding: 0 1rem;
+     color: color.scale($text-color, $lightness: 30%);
+      font-size: 0.9rem;
+    }
+  }
+}

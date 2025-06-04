@@ -13,18 +13,13 @@ from .core import (
     Payment
 )
 
-
-from .audit import (
-    SystemActivityLog,
-    DataChangeLog,
-    AuthenticationLog,
-    FinancialAuditLog,
-    InventoryAdjustmentLog
-)
-
+from .audit import  (SystemActivityLog, 
+                     DataChangeLog, 
+                     AuthenticationLog,
+                     FinancialAuditLog,
+                     InventoryAdjustmentLog)
 
 __all__ = [
- 
     'User',
     'Role',
     'Customer',
@@ -44,9 +39,8 @@ __all__ = [
     'InventoryAdjustmentLog'
 ]
 
-
-from extension.database_extension import db
-
 def init_app(app):
-    """Initialize models with Flask app context"""
+    from extension.database_extension import db
     db.init_app(app)
+    with app.app_context():
+        db.create_all()

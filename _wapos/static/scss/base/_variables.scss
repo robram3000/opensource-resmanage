@@ -1,0 +1,40 @@
+// Colors
+$-primary-color: #4361ee !default;
+$-secondary-color: #3f37c9 !default;
+$-text-color: #2b2d42 !default;
+$-light-gray: #f8f9fa !default;
+$-white: #ffffff !default;
+$-error-color: #ef233c !default;
+
+// Typography
+$-base-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !default;
+$-heading-font: 'Poppins', sans-serif !default;
+
+// Spacing
+$-spacing-unit: 1rem !default;
+$-border-radius: 8px !default;
+$-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !default;
+$-transition: all 0.3s ease !default;
+
+// Public API
+:root {
+  --primary-color: #{$-primary-color};
+  --secondary-color: #{$-secondary-color};
+  --text-color: #{$-text-color};
+  --light-gray: #{$-light-gray};
+  --white: #{$-white};
+  --error-color: #{$-error-color};
+}
+
+$primary-color: $-primary-color;
+$secondary-color: $-secondary-color;
+$text-color: $-text-color;
+$light-gray: $-light-gray;
+$white: $-white;
+$error-color: $-error-color;
+$base-font: $-base-font;
+$heading-font: $-heading-font;
+$spacing-unit: $-spacing-unit;
+$border-radius: $-border-radius;
+$box-shadow: $-box-shadow;
+$transition: $-transition;
