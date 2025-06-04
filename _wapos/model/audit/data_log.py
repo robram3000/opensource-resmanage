@@ -1,19 +1,19 @@
 from datetime import datetime
 from extension.database_extension import db
 
-class AuthenticationLog(db.Model):
-    __tablename__ = 'authentication_logs'
+class DataChangeLog(db.Model):
+    __tablename__ = 'data_change_logs'
     
-    auth_id = db.Column(db.Integer, primary_key=True)
-    action = db.Column(db.String(20), nullable=False)  # LOGIN, LOGOUT, PASSWORD_CHANGE, etc.
-    status = db.Column(db.String(20), nullable=False)  # SUCCESS, FAILED, LOCKED
-    ip_address = db.Column(db.String(45))
-    user_agent = db.Column(db.Text)
+    change_id = db.Column(db.Integer, primary_key=True)
+    table_name = db.Column(db.String(50), nullable=False)
+    record_id = db.Column(db.Integer, nullable=False)
+    change_type = db.Column(db.String(20), nullable=False)  # CREATE, UPDATE, DELETE
+    change_details = db.Column(db.JSON)  # Stores field-level changes
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
     
     # Relationships
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
+    changed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
     user = db.relationship('User')
 
     def __repr__(self):
-        return f"<AuthenticationLog {self.auth_id} {self.user_id} {self.action}>"
+        return f"<DataChangeLog {self.change_id} {self.table_name}.{self.record_id}>"
