@@ -1,9 +1,17 @@
 // Configuration
-@use 'base/variables' as *;
+@use 'base/variables';
 @use 'base/reset';
-
+@use 'base/_admin_variables';
 // Components
 @use 'component/forms';
+
+// admin 
+@use 'component/_admin_button.scss';
+@use 'component/_admin_dropdown.scss';
+@use 'component/_admin_sidebase.scss';
+@use 'component/_admin_topbar.scss';
+@use 'component/_admin_layout';
+
 
 .main-container {
   min-height: 100vh;

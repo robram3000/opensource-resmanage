@@ -1,0 +1,72 @@
+@use '../base/_admin_variables' as *;
+
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-content {
+  flex: 1;
+  padding: $spacer * 2;
+  margin-top: $topbar-height;
+  margin-left: $sidebar-width;
+  transition: margin-left $transition-speed, background-color 0.3s ease;
+  background-color: var(--bg-color);
+  border-top-left-radius: $border-radius * 2;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(var(--accent-color), 0.1) 0%, transparent 20%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// When sidebar is collapsed
+.sidebar-collapsed {
+  .sidebar {
+    width: 80px;
+    
+    .sidebar-header h2,
+    .menu-item span,
+    .sidebar-footer p {
+      display: none;
+    }
+    
+    .dropdown-btn::after {
+      display: none;
+    }
+    
+    .menu-item {
+      justify-content: center;
+      padding: $spacer * 0.75 $spacer;
+    }
+    
+    .dropdown-icon {
+      display: none;
+    }
+  }
+  
+  .main-content {
+    margin-left: 80px;
+  }
+  
+  .top-bar {
+    left: 80px;
+  }
+}

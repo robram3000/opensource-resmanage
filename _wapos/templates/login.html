@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
-  {% block content %}
         <main class="main-container">
             <form action="" method="post" enctype="multipart/form-data" class="form-wrapper">
                 <img src="{{ url_for('static', filename='images/login-icon.svg') }}" alt="Login Icon">    
@@ -33,6 +32,5 @@
                 </div>
             </form>
         </main>
-  {% endblock %}
 </body>
 </html>

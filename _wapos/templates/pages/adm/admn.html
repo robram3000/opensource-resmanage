@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mashiketta{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body class="dark-theme">
+    
+<div class="layout-container">
+    <!-- Top Navigation Bar -->
+    <nav class="top-bar">
+        <div class="top-bar-left">
+            <button class="menu-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="page-title">Dashboard</span>
+        </div>
+        
+        <div class="top-bar-right">
+            <div class="theme-toggle">
+                <button id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            <div class="notifications">
+                <button class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+            </div>
+            <div class="user-dropdown">
+                <button class="user-btn">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+                    <span>Admin</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fas fa-user"></i> Profile</a>
+                    <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="https://scontent.fmnl17-8.fna.fbcdn.net/v/t39.30808-6/302086719_504911008305940_889027936435799204_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeF_E1tOvvQ8_eVs2y65nGGCmXcdXcaQAFuZdx1dxpAAWxeLw_L8npIOvNyPB0NGKaFmN5N9Jghf_wA-oGgSUHWR&_nc_ohc=zaFoVjRWvqIQ7kNvwEcHU6e&_nc_oc=AdmDvXxgw9y07-LhJ0myV74HhIG2AHFGkMnjamWoitqQ0X2Vigx4XVtj4IgqjOW-Mcw&_nc_zt=23&_nc_ht=scontent.fmnl17-8.fna&_nc_gid=MUOwjxLoDGN8ZpLGSOzlQg&oh=00_AfKoQlSSa2wKesiyzyYWo6hEP0GKPRMH_ZfIF6kS5FZojg&oe=68460DDC" alt="App Icon">
+            <h2>Mashiketta</h2>
+        </div>
+
+        <div class="sidebar-menu">
+            <a href="#" class="menu-item active">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn" data-tooltip="Staff Management">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Staff Management</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">Manage Users</a>
+                    <a href="#" class="menu-item">Role Permissions</a>
+                    <a href="#" class="menu-item">Activity Logs</a>
+                    <a href="#" class="menu-item">Loyalyty Card</a>
+                </div>
+            </div>
+              <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn"data-tooltip="Report & Analytics">
+                    <i class="fas fa-boxes"></i>
+                    <span>Report & Analytics</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">Sales Report</a>
+                    <a href="#" class="menu-item">Financial Summary</a>
+                    <a href="#" class="menu-item">Customer Analytics</a>
+                </div>
+            </div>
+            
+            <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn" data-tooltip="Inventory">
+                    <i class="fas fa-boxes"></i>
+                    <span>Inventory</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">Stocks Levels</a>
+                    <a href="#" class="menu-item">Ingredient</a>
+                    <a href="#" class="menu-item">Supplier</a>
+                    <a href="#" class="menu-item">InventoryReports</a>
+                </div>
+            </div>
+             <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn" data-tooltip="Menu Management">
+                    <i class="fas fa-table"></i>
+                    <span>Menu Managementt</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">Menu Items</a>
+                    <a href="#" class="menu-item">Categories</a>
+                    <a href="#" class="menu-item">Pricing & Discounts</a>
+                </div>
+            </div>
+            
+            <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn" data-tooltip="Table Management">
+                    <i class="fas fa-table"></i>
+                    <span>Table Management</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">All Tables</a>
+                    <a href="#" class="menu-item">Floor Plan Designer</a>
+                    <a href="#" class="menu-item">Live Table Status</a>
+                    <a href="#" class="menu-item">Reservation</a>
+                    <a href="#" class="menu-item">Booking calendar</a>
+                    <a href="#" class="menu-item">Walk-In Management</a>
+                </div>
+            </div>
+            
+            <div class="menu-dropdown">
+                <button class="menu-item dropdown-btn" data-tooltip="Settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                    <i class="fas fa-chevron-down dropdown-icon"></i>
+                </button>
+                <div class="dropdown-items">
+                    <a href="#" class="menu-item">General Settings</a>
+                    <a href="#" class="menu-item">Payment Methods</a>
+                    <a href="#" class="menu-item">Tax Configuration</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <p>Credit by: AU-STUDENT</p>
+        </div>
+    </aside>
+
+    <main class="main-content" id="main">
+        {% block content %}
+        {% endblock %}
+    </main>
+</div>
+    
+    <script src="{{ url_for('static', filename='js/admn/sidebar.js') }}"></script>
+</body>
+</html>

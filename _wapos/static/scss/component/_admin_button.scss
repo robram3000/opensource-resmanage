@@ -1,0 +1,63 @@
+@use '../base/_admin_variables' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacer * 0.5 $spacer;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--accent-color), 0.25);
+  }
+  
+  i {
+    margin-right: $spacer * 0.5;
+    transition: color 0.2s ease;
+  }
+  
+  &-primary {
+    background-color: var(--accent-color);
+    color: $white;
+    
+    &:hover {
+      background-color: rgba(var(--accent-color), 0.9);
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-color);
+    
+    &:hover {
+      background-color: rgba(var(--accent-color), 0.1);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+  }
+  
+  &-sm {
+    padding: $spacer * 0.25 $spacer * 0.5;
+    font-size: 0.8rem;
+  }
+  
+  &-lg {
+    padding: $spacer * 0.75 $spacer * 1.5;
+    font-size: 1rem;
+  }
+}

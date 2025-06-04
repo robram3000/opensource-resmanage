@@ -1,0 +1,72 @@
+// Colors - Light Theme
+$white: #ffffff;
+$black: #000000;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+
+// Colors - Dark Theme
+$dark-bg: #eeeeee;
+$dark-surface: #3C3C3C;
+$dark-primary: #0f3460;
+$dark-secondary: #533483;
+$dark-accent: #77186f;
+$dark-text: #f1f1f1;
+$dark-text-secondary: #b8b8b8;
+
+// Theme Variables
+:root {
+  --bg-color: #{$white};
+  --surface-color: #{$gray-100};
+  --primary-color: #2c3e50;
+  --secondary-color: #ecf0f1;
+  --accent-color: #0f5788;
+  --text-color: #{$gray-900};
+  --text-secondary: #{$gray-600};
+  --border-color: #{$gray-300};
+}
+
+.dark-theme {
+  --bg-color: #{$dark-bg};
+  --surface-color: #{$dark-surface};
+  --primary-color: #{$dark-primary};
+  --secondary-color: #{$dark-secondary};
+  --accent-color: #{$dark-accent};
+  --text-color: #{$dark-text};
+  --text-secondary: #{$dark-text-secondary};
+  --border-color: #{rgba($white, 0.1)};
+}
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+// Typography
+$font-family-sans-serif: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Layout
+$sidebar-width: 240px;
+$topbar-height: 60px;
+$transition-speed: 0.3s;
+$border-radius: 0.5rem;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);

@@ -1,0 +1,37 @@
+@use '../base/_admin_variables' as *;
+.dropdown {
+  position: relative;
+  
+  &-btn {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  &-content {
+    display: none;
+    position: absolute;
+    background-color: $white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba($black, 0.1);
+    border-radius: 4px;
+    z-index: 1;
+    
+    a {
+      display: block;
+      padding: $spacer * 0.75 $spacer;
+      color: $gray-700;
+      text-decoration: none;
+      
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+  }
+  
+  &:hover &-content {
+    display: block;
+  }
+}
