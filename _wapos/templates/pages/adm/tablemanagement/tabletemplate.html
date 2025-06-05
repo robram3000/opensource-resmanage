@@ -1,0 +1,288 @@
+{% extends "pages/adm/admn.html" %}
+{% block content %}
+    <div class="floor-plan-container">
+        <!-- Sidebar with table options -->
+        <aside class="tables-panel">
+            <div class="panel-header">
+                <h2 class="panel-title">Table Sizes</h2>
+                <button class="panel-toggle" id="togglePanel">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            
+            <div class="search-box">
+                <input type="text" placeholder="Search tables..." id="tableSearch">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="table-options" id="tableOptions">
+                <button class="table-option" draggable="true" data-size="2" data-shape="round">
+                    <div class="table-visual round" data-size="2"></div>
+                    <span>2-top (Round)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="4" data-shape="round">
+                    <div class="table-visual round" data-size="4"></div>
+                    <span>4-top (Round)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="6" data-shape="round">
+                    <div class="table-visual round" data-size="6"></div>
+                    <span>6-top (Round)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="2" data-shape="square">
+                    <div class="table-visual square" data-size="2"></div>
+                    <span>2-top (Square)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="4" data-shape="square">
+                    <div class="table-visual square" data-size="4"></div>
+                    <span>4-top (Square)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="6" data-shape="rectangle">
+                    <div class="table-visual rectangle" data-size="6"></div>
+                    <span>6-top (Rectangle)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="8" data-shape="rectangle">
+                    <div class="table-visual rectangle" data-size="8"></div>
+                    <span>8-top (Rectangle)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="10" data-shape="oval">
+                    <div class="table-visual oval" data-size="10"></div>
+                    <span>10-top (Oval)</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="1" data-shape="square">
+                    <div class="table-visual square" data-size="1"></div>
+                    <span>Bar Seat</span>
+                </button>
+                <button class="table-option" draggable="true" data-size="12" data-shape="banquet">
+                    <div class="table-visual banquet" data-size="12"></div>
+                    <span>Banquet</span>
+                </button>
+            </div>
+            
+            <div class="panel-section">
+                <h3 class="section-title">Restaurant Elements</h3>
+                <div class="element-options">
+                    <button class="element-option" draggable="true" data-type="bar">
+                        <i class="fas fa-glass-martini-alt"></i>
+                        <span>Bar Counter</span>
+                    </button>
+                    <button class="element-option" draggable="true" data-type="wall">
+                        <i class="fas fa-border-style"></i>
+                        <span>Wall</span>
+                    </button>
+                    <button class="element-option" draggable="true" data-type="door">
+                        <i class="fas fa-door-open"></i>
+                        <span>Entrance</span>
+                    </button>
+                    <button class="element-option" draggable="true" data-type="kitchen">
+                        <i class="fas fa-utensils"></i>
+                        <span>Kitchen</span>
+                    </button>
+                    <button class="element-option" draggable="true" data-type="restroom">
+                        <i class="fas fa-restroom"></i>
+                        <span>Restroom</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="panel-actions">
+                <button class="btn btn-primary" id="saveFloorPlan">
+                    <i class="fas fa-save"></i> Save Floor Plan
+                </button>
+                <button class="btn btn-secondary" id="clearAll">
+                    <i class="fas fa-trash-alt"></i> Clear All
+                </button>
+                <button class="btn btn-outline" id="toggleGrid">
+                    <i class="fas fa-th"></i> Toggle Grid
+                </button>
+                <button class="btn btn-outline" id="zoomIn">
+                    <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="btn btn-outline" id="zoomOut">
+                    <i class="fas fa-search-minus"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main floor plan area -->
+        <main class="floor-plan-area" id="floorPlan">
+            <div class="floor-plan-header">
+                <h2 class="floor-plan-title">Restaurant Floor Plan</h2>
+                <div class="floor-plan-controls">
+                    <div class="zoom-level">Zoom: 100%</div>
+                    <button class="btn btn-sm btn-outline" id="centerView">
+                        <i class="fas fa-expand"></i> Center View
+                    </button>
+                </div>
+            </div>
+            <div class="floor-plan-grid" id="floorPlanGrid">
+                <!-- Restaurant elements will be placed here -->
+                <div class="floor-element kitchen" style="width: 150px; height: 200px; top: 20px; left: 20px;">
+                    <div class="element-label">Kitchen</div>
+                </div>
+                <div class="floor-element bar" style="width: 400px; height: 30px; top: 250px; left: 50px;">
+                    <div class="element-label">Bar</div>
+                </div>
+                
+                <!-- Existing tables will be placed here -->
+                <div class="floor-plan-table" data-table-id="1" data-size="4" data-shape="round" style="top: 100px; left: 150px;">
+                    <div class="table-visual round" data-size="4"></div>
+                    <span class="table-label">Table 1</span>
+                    <div class="table-status available"></div>
+                </div>
+                <div class="floor-plan-table" data-table-id="2" data-size="6" data-shape="rectangle" style="top: 100px; left: 300px;">
+                    <div class="table-visual rectangle" data-size="6"></div>
+                    <span class="table-label">Table 2</span>
+                    <div class="table-status reserved"></div>
+                </div>
+                <div class="floor-plan-table" data-table-id="3" data-size="2" data-shape="square" style="top: 200px; left: 200px;">
+                    <div class="table-visual square" data-size="2"></div>
+                    <span class="table-label">Table 3</span>
+                    <div class="table-status occupied"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Table properties panel -->
+        <aside class="properties-panel" id="propertiesPanel">
+            <div class="panel-header">
+                <h2 class="panel-title">Table Properties</h2>
+                <button class="panel-close" id="closeProperties">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="property-tabs">
+                <button class="tab-btn active" data-tab="properties">Properties</button>
+                <button class="tab-btn" data-tab="reservations">Reservations</button>
+                <button class="tab-btn" data-tab="notes">Notes</button>
+            </div>
+            
+            <div class="property-form">
+                <div class="tab-content active" data-tab="properties">
+                    <div class="form-group">
+                        <label for="tableId">Table ID</label>
+                        <input type="text" id="tableId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="tableName">Display Name</label>
+                        <input type="text" id="tableName">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tableSize">Size</label>
+                            <select id="tableSize">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="4">4</option>
+                                <option value="6">6</option>
+                                <option value="8">8</option>
+                                <option value="10">10</option>
+                                <option value="12">12+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableShape">Shape</label>
+                            <select id="tableShape">
+                                <option value="round">Round</option>
+                                <option value="square">Square</option>
+                                <option value="rectangle">Rectangle</option>
+                                <option value="oval">Oval</option>
+                                <option value="banquet">Banquet</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tableX">X Position</label>
+                            <input type="number" id="tableX">
+                        </div>
+                        <div class="form-group">
+                            <label for="tableY">Y Position</label>
+                            <input type="number" id="tableY">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tableRotation">Rotation</label>
+                        <input type="range" id="tableRotation" min="0" max="360" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="tableStatus">Status</label>
+                        <select id="tableStatus">
+                            <option value="available">Available</option>
+                            <option value="reserved">Reserved</option>
+                            <option value="occupied">Occupied</option>
+                            <option value="out-of-service">Out of Service</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="tab-content" data-tab="reservations">
+                    <div class="reservation-list">
+                        <div class="reservation-item">
+                            <div class="reservation-time">7:00 PM</div>
+                            <div class="reservation-name">John Smith (4 people)</div>
+                            <button class="reservation-action"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                        <div class="reservation-item">
+                            <div class="reservation-time">9:30 PM</div>
+                            <div class="reservation-name">Sarah Johnson (2 people)</div>
+                            <button class="reservation-action"><i class="fas fa-ellipsis-v"></i></button>
+                        </div>
+                    </div>
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus"></i> Add Reservation
+                    </button>
+                </div>
+                
+                <div class="tab-content" data-tab="notes">
+                    <div class="form-group">
+                        <label for="tableNotes">Staff Notes</label>
+                        <textarea id="tableNotes" rows="4"></textarea>
+                    </div>
+                    <div class="notes-history">
+                        <div class="note-item">
+                            <div class="note-date">Today, 2:45 PM</div>
+                            <div class="note-content">Table wobbly - needs adjustment</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button class="btn btn-danger" id="deleteTable">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                    <button class="btn btn-primary" id="saveTable">
+                        <i class="fas fa-check"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- Toast notifications -->
+        <div class="toast-container" id="toastContainer"></div>
+    </div>
+
+    <!-- Modal for saving floor plan -->
+    <div class="modal" id="saveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Save Floor Plan</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="floorPlanName">Floor Plan Name</label>
+                    <input type="text" id="floorPlanName" placeholder="e.g., Main Dining Room">
+                </div>
+                <div class="form-group">
+                    <label for="floorPlanDescription">Description</label>
+                    <textarea id="floorPlanDescription" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-primary modal-confirm">Save</button>
+            </div>
+        </div>
+    </div>
+{% endblock%}

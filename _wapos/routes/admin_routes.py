@@ -19,5 +19,14 @@ def activity_logs():
     return render_template('pages/adm/staffmanagement/activitylogs.html')
 
 
+@admin.route('/table-manage', methods=['GET', 'POST'])
+def table_manage():
+    return render_template('pages/adm/tablemanagement/tabletemplate.html')
+
+
+@admin.route('/stocks-level', methods=['GET', 'POST'])
+def stocks_level():
+    return render_template('pages/adm/inventorymanagement/stocklevels.html')
+
 def init_app(app):
     app.register_blueprint(admin)

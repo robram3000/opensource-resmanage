@@ -68,8 +68,40 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 
+   // Toggle staff creation modal
+            // Modal handling
+       // Toggle staff creation modal
+    const staffModal = document.querySelector('.create-staff');
+    const openModalButtons = document.querySelectorAll('.add-option');
+    const closeModalButton = document.getElementById('closestaff');
 
-    // Toggle between grid and list view
+    function openModal() {
+        staffModal.classList.add('open');
+        // Also add 'show' if needed for CSS
+        staffModal.classList.add('show');
+    }
+
+    function closeModal() {
+        staffModal.classList.remove('open');
+        staffModal.classList.remove('show');
+    }
+
+    // Event listeners
+    openModalButtons.forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', closeModal);
+    }
+
+    // Close when clicking outside
+    staffModal?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+            // Toggle between grid and list view
     // Toggle grid/list view
     const gridViewBtn = document.querySelector('.grid-view');
     const listViewBtn = document.querySelector('.list-view');

@@ -7,159 +7,136 @@
 @use 'sass:map';
 @use 'sass:color';
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1050;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  @include transition;
-  
-  &.show {
-    opacity: 1;
-    visibility: visible;
-  }
+.create-staff {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+    
+    &.open, &.show {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
 }
-
 .modal-container {
-  background-color: var(--surface-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow-lg);
-  width: 100%;
-  max-width: 600px;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  @include transition;
-  transform: translateY(20px);
-  
-  .modal-overlay.show & {
-    transform: translateY(0);
-  }
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px);
+    transition: transform var(--transition-speed) ease;
+    
+    .modal-overlay.show & {
+        transform: translateY(0);
+    }
 }
 
 .modal-header {
-  padding: map.get($spacers, 3);
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  
-  h3 {
-    margin: 0;
-    font-size: 1.25rem;
-    color: var(--text-color);
-  }
-  
-  .close-modal {
-    background: none;
-    border: none;
-    color: var(--text-secondary);
-    font-size: 1.25rem;
-    cursor: pointer;
-    @include transition;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: map.get($spacers, 3);
+    border-bottom: 1px solid var(--border-color);
     
-    &:hover {
-      color: var(--accent-color);
+    h3 {
+        margin: 0;
+        font-size: 1.25rem;
     }
-  }
+    
+    .close-modal {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        cursor: pointer;
+        @include transition;
+        
+        &:hover {
+            color: var(--accent-color);
+        }
+    }
 }
 
 .modal-body {
-  padding: map.get($spacers, 3);
-  overflow-y: auto;
-  flex-grow: 1;
+    padding: map.get($spacers, 3);
+    flex: 1;
+    overflow-y: auto;
+    
+    .user-form {
+        display: flex;
+        flex-direction: column;
+        gap: map.get($spacers, 2);
+    }
+    
+    .form-group {
+        margin-bottom: map.get($spacers, 2);
+        
+        label {
+            display: block;
+            margin-bottom: map.get($spacers, 1);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: map.get($spacers, 1.5) map.get($spacers, 2);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            @include transition;
+            
+            &:focus {
+                border-color: var(--accent-color);
+                outline: none;
+                box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
+            }
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236c757d' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right map.get($spacers, 2) center;
+            background-size: 16px 12px;
+            padding-right: map.get($spacers, 4);
+        }
+    }
+    
+    .form-row {
+        display: flex;
+        gap: map.get($spacers, 3);
+        
+        .form-group {
+            flex: 1;
+        }
+    }
 }
 
 .modal-footer {
-  padding: map.get($spacers, 3);
-  border-top: 1px solid var(--border-color);
-  display: flex;
-  justify-content: flex-end;
-  gap: map.get($spacers, 2);
-}
-
-.user-form {
-  .form-group {
-    margin-bottom: map.get($spacers, 3);
-    
-    label {
-      display: block;
-      margin-bottom: map.get($spacers, 1);
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: map.get($spacers, 1.5) map.get($spacers, 2);
-      border: 1px solid var(--border-color);
-      border-radius: var(--border-radius);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      @include transition;
-      
-      &:focus {
-        border-color: var(--accent-color);
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(var(--accent-color-rgb), 0.1);
-      }
-    }
-    
-    select.form-control {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right map.get($spacers, 2) center;
-      background-size: 16px 12px;
-      padding-right: map.get($spacers, 4);
-    }
-  }
-  
-  .form-row {
     display: flex;
-    gap: map.get($spacers, 3);
-    margin-bottom: map.get($spacers, 3);
+    justify-content: flex-end;
+    padding: map.get($spacers, 3);
+    border-top: 1px solid var(--border-color);
+    gap: map.get($spacers, 2);
     
-    .form-group {
-      flex: 1;
-      margin-bottom: 0;
+    .btn {
+        padding: map.get($spacers, 1.5) map.get($spacers, 3);
     }
-  }
-}
-
-.btn {
-  @extend .btn;
-  
-  &-secondary {
-    @extend .btn-outline;
-  }
-  
-  &-primary {
-    @extend .btn-primary;
-  }
-}
-
-// Responsive adjustments
-@media (max-width: 768px) {
-  .modal-container {
-    margin: map.get($spacers, 2);
-    max-width: calc(100% - #{map.get($spacers, 4)});
-  }
-  
-  .user-form {
-    .form-row {
-      flex-direction: column;
-      gap: map.get($spacers, 2);
-    }
-  }
 }

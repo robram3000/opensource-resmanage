@@ -89,7 +89,7 @@
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </button>
                 <div class="dropdown-items">
-                    <a href="#" class="menu-item">Stocks Levels</a>
+                    <a href="{{url_for("admn.stocks_level")}}" class="menu-item">Stocks Levels</a>
                     <a href="#" class="menu-item">Ingredient</a>
                     <a href="#" class="menu-item">Supplier</a>
                     <a href="#" class="menu-item">InventoryReports</a>
@@ -115,7 +115,7 @@
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </button>
                 <div class="dropdown-items">
-                    <a href="#" class="menu-item">All Tables</a>
+                    <a href="{{url_for("admn.table_manage")}}" class="menu-item">All Tables</a>
                     <a href="#" class="menu-item">Floor Plan Designer</a>
                     <a href="#" class="menu-item">Live Table Status</a>
                     <a href="#" class="menu-item">Reservation</a>
@@ -151,5 +151,7 @@
     
     <script src="{{ url_for('static', filename='js/admn/sidebar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admn/usermenu.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/admn/tablemanagement.js') }}"></script>
+    
 </body>
 </html>

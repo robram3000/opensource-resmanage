@@ -23,6 +23,10 @@
 @use 'component/_admin_um_usermange.scss';
 
 
+
+@use 'component/_admin_tm_table.scss';
+@use 'component/_admin_im_stocklevel.scss';
+
 @use 'component/_admin_mu_create.scss';
 
 @use 'base/_admin_typography.scss';
