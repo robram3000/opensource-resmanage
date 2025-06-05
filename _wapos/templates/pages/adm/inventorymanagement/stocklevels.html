@@ -1,270 +1,485 @@
 {% extends "pages/adm/admn.html" %}
-{%block content%}
-<div class="stock-management-container">
-  <!-- Header Section -->
-  <header class="stock-header">
-    <h1><i class="fas fa-boxes"></i> Stock Level Management</h1>
-    <div class="header-actions">
-      <button class="btn btn-primary" id="refresh-stock">
-        <i class="fas fa-sync-alt"></i> Refresh
-      </button>
-      <div class="theme-toggle">
-        <input type="checkbox" id="theme-switch" class="theme-switch">
-        <label for="theme-switch" class="theme-label">
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-sun"></i>
-          <span class="theme-ball"></span>
-        </label>
-      </div>
-    </div>
-  </header>
-
-  <!-- Dashboard Summary Cards -->
-  <section class="stock-summary">
-    <div class="summary-card critical">
-      <div class="card-icon">
-        <i class="fas fa-exclamation-triangle"></i>
-      </div>
-      <div class="card-content">
-        <h3>Critical Stock</h3>
-        <p class="value">24 Items</p>
-        <p class="trend down">5% from last week</p>
-      </div>
-    </div>
-    
-    <div class="summary-card low">
-      <div class="card-icon">
-        <i class="fas fa-battery-quarter"></i>
-      </div>
-      <div class="card-content">
-        <h3>Low Stock</h3>
-        <p class="value">42 Items</p>
-        <p class="trend up">12% from last week</p>
-      </div>
-    </div>
-    
-    <div class="summary-card adequate">
-      <div class="card-icon">
-        <i class="fas fa-battery-three-quarters"></i>
-      </div>
-      <div class="card-content">
-        <h3>Adequate Stock</h3>
-        <p class="value">156 Items</p>
-        <p class="trend stable">No change</p>
-      </div>
-    </div>
-    
-    <div class="summary-card overstock">
-      <div class="card-icon">
-        <i class="fas fa-warehouse"></i>
-      </div>
-      <div class="card-content">
-        <h3>Overstock</h3>
-        <p class="value">18 Items</p>
-        <p class="trend up">8% from last week</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content Area -->
-  <div class="stock-main-content">
-    <!-- Filters and Search -->
-    <div class="stock-controls">
-      <div class="search-box">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search products..." class="search-input">
-      </div>
-      
-      <div class="filter-group">
-        <select class="form-select" id="category-filter">
-          <option value="">All Categories</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="groceries">Groceries</option>
-          <option value="furniture">Furniture</option>
-        </select>
-        
-        <select class="form-select" id="stock-status-filter">
-          <option value="">All Statuses</option>
-          <option value="critical">Critical</option>
-          <option value="low">Low</option>
-          <option value="adequate">Adequate</option>
-          <option value="overstock">Overstock</option>
-        </select>
-        
-        <button class="btn btn-secondary" id="export-btn">
-          <i class="fas fa-file-export"></i> Export
-        </button>
-      </div>
-    </div>
-
-    <!-- Stock Level Table -->
-    <div class="stock-table-container">
-      <table class="stock-table">
-        <thead>
-          <tr>
-            <th class="sortable" data-sort="product">Product <i class="fas fa-sort"></i></th>
-            <th class="sortable" data-sort="sku">SKU <i class="fas fa-sort"></i></th>
-            <th class="sortable" data-sort="category">Category <i class="fas fa-sort"></i></th>
-            <th>Current Stock</th>
-            <th class="sortable" data-sort="threshold">Threshold <i class="fas fa-sort"></i></th>
-            <th>Status</th>
-            <th>Last Updated</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="critical">
-            <td>Premium Wireless Headphones</td>
-            <td>SKU-2023-001</td>
-            <td>Electronics</td>
-            <td>
-              <div class="stock-bar">
-                <div class="progress-bar critical" style="width: 15%"></div>
-                <span>5/50</span>
-              </div>
-            </td>
-            <td>10</td>
-            <td><span class="status-badge critical">Critical</span></td>
-            <td>2 hours ago</td>
-            <td>
-              <button class="btn-icon" title="Restock"><i class="fas fa-truck"></i></button>
-              <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
-              <button class="btn-icon" title="View History"><i class="fas fa-history"></i></button>
-            </td>
-          </tr>
-          <tr class="low">
-            <td>Organic Cotton T-Shirt</td>
-            <td>SKU-2023-042</td>
-            <td>Clothing</td>
-            <td>
-              <div class="stock-bar">
-                <div class="progress-bar low" style="width: 35%"></div>
-                <span>14/40</span>
-              </div>
-            </td>
-            <td>15</td>
-            <td><span class="status-badge low">Low</span></td>
-            <td>1 day ago</td>
-            <td>
-              <button class="btn-icon" title="Restock"><i class="fas fa-truck"></i></button>
-              <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
-              <button class="btn-icon" title="View History"><i class="fas fa-history"></i></button>
-            </td>
-          </tr>
-          <tr class="adequate">
-            <td>Stainless Steel Water Bottle</td>
-            <td>SKU-2023-107</td>
-            <td>Home</td>
-            <td>
-              <div class="stock-bar">
-                <div class="progress-bar adequate" style="width: 65%"></div>
-                <span>26/40</span>
-              </div>
-            </td>
-            <td>10</td>
-            <td><span class="status-badge adequate">Adequate</span></td>
-            <td>3 days ago</td>
-            <td>
-              <button class="btn-icon" title="Restock"><i class="fas fa-truck"></i></button>
-              <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
-              <button class="btn-icon" title="View History"><i class="fas fa-history"></i></button>
-            </td>
-          </tr>
-          <tr class="overstock">
-            <td>Wireless Charging Pad</td>
-            <td>SKU-2023-205</td>
-            <td>Electronics</td>
-            <td>
-              <div class="stock-bar">
-                <div class="progress-bar overstock" style="width: 120%"></div>
-                <span>60/50</span>
-              </div>
-            </td>
-            <td>10</td>
-            <td><span class="status-badge overstock">Overstock</span></td>
-            <td>1 week ago</td>
-            <td>
-              <button class="btn-icon" title="Restock"><i class="fas fa-truck"></i></button>
-              <button class="btn-icon" title="Edit"><i class="fas fa-edit"></i></button>
-              <button class="btn-icon" title="View History"><i class="fas fa-history"></i></button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <div class="table-footer">
-        <div class="pagination-info">
-          Showing <span>1-4</span> of <span>124</span> items
+{% block content %}
+<div class="ingredient-management-container">
+    <!-- Header Section with Title and Quick Stats -->
+    <div class="management-header">
+        <h2 class="management-title">
+            <i class="fas fa-utensils"></i> Ingredient Stock Management
+            <span class="badge total-items">Total: 124</span>
+        </h2>
+        <div class="quick-stats">
+            <div class="stat-card critical">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <span class="stat-value">24</span>
+                    <span class="stat-label">Critical</span>
+                </div>
+            </div>
+            <div class="stat-card low">
+                <i class="fas fa-battery-quarter"></i>
+                <div>
+                    <span class="stat-value">42</span>
+                    <span class="stat-label">Low Stock</span>
+                </div>
+            </div>
+            <div class="stat-card adequate">
+                <i class="fas fa-battery-three-quarters"></i>
+                <div>
+                    <span class="stat-value">156</span>
+                    <span class="stat-label">Adequate</span>
+                </div>
+            </div>
+            <div class="stat-card expiring">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <span class="stat-value">18</span>
+                    <span class="stat-label">Expiring Soon</span>
+                </div>
+            </div>
         </div>
-        <div class="pagination-controls">
-          <button class="btn btn-icon" disabled><i class="fas fa-chevron-left"></i></button>
-          <span class="current-page">1</span>
-          <button class="btn btn-icon"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Advanced Action Bar -->
+    <div class="action-bar">
+        <!-- Left Side Actions -->
+        <div class="action-group">
+            <div class="search-container with-advanced">
+                <i class="search-icon fas fa-search"></i>
+                <input type="text" placeholder="Search ingredients..." class="search-input">
+                <button class="advanced-search-toggle" title="Advanced Search">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+            
+            <div class="bulk-actions">
+                <select class="bulk-select">
+                    <option value="">Bulk Actions</option>
+                    <option value="reorder">Create Reorder</option>
+                    <option value="adjust">Adjust Stock</option>
+                    <option value="export">Export Selected</option>
+                    <option value="print">Print Labels</option>
+                </select>
+                <button class="apply-bulk" disabled>Apply</button>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Restock Modal (Hidden by default) -->
-  <div class="modal" id="restock-modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Restock Product</h3>
-        <button class="btn-icon modal-close"><i class="fas fa-times"></i></button>
-      </div>
-      <div class="modal-body">
-        <form class="restock-form">
-          <div class="form-group">
-            <label for="product-name">Product</label>
-            <input type="text" id="product-name" class="form-control" readonly>
-          </div>
-          <div class="form-group">
-            <label for="current-stock">Current Stock</label>
-            <input type="text" id="current-stock" class="form-control" readonly>
-          </div>
-          <div class="form-group">
-            <label for="restock-quantity">Quantity to Add</label>
-            <input type="number" id="restock-quantity" class="form-control" min="1" value="10">
-          </div>
-          <div class="form-group">
-            <label for="supplier">Supplier</label>
-            <select id="supplier" class="form-control">
-              <option value="">Select Supplier</option>
-              <option value="supplier1">Global Electronics Inc.</option>
-              <option value="supplier2">Textile World Ltd.</option>
-              <option value="supplier3">Home Essentials Co.</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="expected-date">Expected Delivery Date</label>
-            <input type="date" id="expected-date" class="form-control">
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary modal-close">Cancel</button>
-        <button class="btn btn-primary">Confirm Restock</button>
-      </div>
+        <!-- Right Side Actions -->
+        <div class="action-group">
+            <div class="view-controls">
+                <button class="view-btn grid-view" title="Grid View">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn list-view active" title="List View">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button class="view-btn refresh" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            
+            <div class="export-container dropdown">
+                <button class="export-btn dropdown-toggle">
+                    <i class="fas fa-file-export"></i>
+                    <span>Export</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="export-option excel">
+                        <i class="fas fa-file-excel"></i> Excel
+                    </button>
+                    <button class="export-option pdf">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="export-option csv">
+                        <i class="fas fa-file-csv"></i> CSV
+                    </button>
+                    <button class="export-option print">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+            
+            <div class="add-item-container dropdown">
+                <button class="add-button dropdown-toggle">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Ingredient</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="add-option" data-modal="add-ingredient">
+                        <i class="fas fa-box-open"></i> Single Ingredient
+                    </button>
+                    <button class="add-option" data-modal="bulk-upload">
+                        <i class="fas fa-file-import"></i> Bulk Upload
+                    </button>
+                    <button class="add-option" data-modal="quick-add">
+                        <i class="fas fa-bolt"></i> Quick Add
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- Chart Container (Hidden by default, can be toggled) -->
-<div class="chart-container" id="stock-trend-chart">
-  <div class="chart-header">
-    <h3>Stock Level Trends</h3>
-    <div class="chart-controls">
-      <select class="form-select" id="chart-timeframe">
-        <option value="7d">Last 7 Days</option>
-        <option value="30d" selected>Last 30 Days</option>
-        <option value="90d">Last 90 Days</option>
-      </select>
-      <button class="btn-icon chart-close"><i class="fas fa-times"></i></button>
+    <!-- Advanced Search Panel (Collapsible) -->
+    <div class="advanced-search-panel">
+        <div class="search-fields">
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" multiple>
+                    <option value="dairy">Dairy</option>
+                    <option value="meat">Meat</option>
+                    <option value="produce">Produce</option>
+                    <option value="dry">Dry Goods</option>
+                    <option value="frozen">Frozen</option>
+                    <option value="spices">Spices</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Stock Status</label>
+                <select class="form-control" multiple>
+                    <option value="critical">Critical</option>
+                    <option value="low">Low</option>
+                    <option value="adequate">Adequate</option>
+                    <option value="overstock">Overstock</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Expiration Date</label>
+                <div class="date-range">
+                    <input type="date" class="form-control" placeholder="From">
+                    <span>to</span>
+                    <input type="date" class="form-control" placeholder="To">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Storage Location</label>
+                <select class="form-control" multiple>
+                    <option value="fridge">Refrigerator</option>
+                    <option value="freezer">Freezer</option>
+                    <option value="pantry">Pantry</option>
+                    <option value="dry-storage">Dry Storage</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Supplier</label>
+                <select class="form-control" multiple>
+                    <option value="supplier1">Fresh Farms</option>
+                    <option value="supplier2">Quality Meats</option>
+                    <option value="supplier3">Global Spices</option>
+                </select>
+            </div>
+        </div>
+        <div class="search-actions">
+            <button class="search-btn primary">Search</button>
+            <button class="search-btn secondary">Reset</button>
+            <button class="search-btn cancel">Cancel</button>
+            <button class="search-btn link">Save Search</button>
+        </div>
     </div>
-  </div>
-  <div class="chart-body">
-    <canvas id="stock-trend-canvas"></canvas>
-  </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+        <!-- List View (Default) -->
+        <div class="list-view-container">
+            <!-- Ingredients Table -->
+            <div class="table-container with-checkboxes">
+                <table class="ingredients-table">
+                    <thead>
+                        <tr>
+                            <th width="40px">
+                                <input type="checkbox" class="select-all">
+                            </th>
+                            <th class="sortable">
+                                <span>ID</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable active asc">
+                                <span>Ingredient</span>
+                                <i class="fas fa-sort-up"></i>
+                            </th>
+                            <th>Category</th>
+                            <th>Current Stock</th>
+                            <th>Threshold</th>
+                            <th>Status</th>
+                            <th>Expiration</th>
+                            <th>Location</th>
+                            <th>Last Updated</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="ingredient-critical">
+                            <td><input type="checkbox" class="ingredient-checkbox"></td>
+                            <td>ING-045</td>
+                            <td>
+                                <div class="ingredient-info">
+                                    <div class="details">
+                                        <strong>Organic Tomato Puree</strong>
+                                        <small>Supplier: Fresh Farms</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Canned Goods</td>
+                            <td>
+                                <div class="stock-indicator">
+                                    <div class="progress-bar critical" style="width: 15%"></div>
+                                    <span>3/20 cans</span>
+                                </div>
+                            </td>
+                            <td>5</td>
+                            <td>
+                                <span class="status-badge critical">
+                                    <i class="fas fa-exclamation-circle"></i> Critical
+                                </span>
+                            </td>
+                            <td>
+                                <span class="expiration-badge warning">
+                                    <i class="fas fa-clock"></i> 3 days
+                                </span>
+                            </td>
+                            <td>
+                                <span class="location-badge pantry">
+                                    <i class="fas fa-box"></i> Pantry
+                                </span>
+                            </td>
+                            <td>2 hours ago</td>
+                            <td class="actions-cell">
+                                <div class="dropdown actions-dropdown">
+                                    <button class="actions-toggle">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="action-btn view" data-modal="view-details">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="action-btn edit" data-modal="edit-ingredient">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="action-btn adjust" data-modal="adjust-stock">
+                                            <i class="fas fa-sliders-h"></i> Adjust Stock
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="action-btn reorder" data-modal="create-order">
+                                            <i class="fas fa-truck"></i> Reorder
+                                        </button>
+                                        <button class="action-btn transfer" data-modal="transfer-stock">
+                                            <i class="fas fa-exchange-alt"></i> Transfer
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="ingredient-low">
+                            <td><input type="checkbox" class="ingredient-checkbox"></td>
+                            <td>ING-102</td>
+                            <td>
+                                <div class="ingredient-info">
+                                    <div class="details">
+                                        <strong>Fresh Basil</strong>
+                                        <small>Supplier: Green Gardens</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Produce</td>
+                            <td>
+                                <div class="stock-indicator">
+                                    <div class="progress-bar low" style="width: 35%"></div>
+                                    <span>7/20 bunches</span>
+                                </div>
+                            </td>
+                            <td>10</td>
+                            <td>
+                                <span class="status-badge low">
+                                    <i class="fas fa-exclamation-circle"></i> Low
+                                </span>
+                            </td>
+                            <td>
+                                <span class="expiration-badge normal">
+                                    <i class="fas fa-check-circle"></i> 7 days
+                                </span>
+                            </td>
+                            <td>
+                                <span class="location-badge fridge">
+                                    <i class="fas fa-snowflake"></i> Fridge
+                                </span>
+                            </td>
+                            <td>1 day ago</td>
+                            <td class="actions-cell">
+                                <!-- Similar action dropdown as above -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Rows per page:</span>
+                        <select class="form-control">
+                            <option>10</option>
+                            <option selected>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                    <div class="selected-count">
+                        <span>0</span> of <span>124</span> selected
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-25 of 124 ingredients</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <button class="page-number">4</button>
+                            <button class="page-number">5</button>
+                        </div>
+                        
+                        <button class="pagination-btn next">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid View (Hidden by default) -->
+        <div class="grid-view-container" style="display: none;">
+            <div class="ingredient-grid">
+                <div class="ingredient-card critical">
+                    <div class="card-header">
+                        <input type="checkbox" class="ingredient-checkbox">
+                        <div class="status-indicator critical"></div>
+                        <div class="ingredient-image">
+                            <img src="/static/images/ingredients/tomato-puree.jpg" alt="Tomato Puree">
+                        </div>
+                        <div class="ingredient-info">
+                            <h4>Organic Tomato Puree</h4>
+                            <p class="supplier">Fresh Farms</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="stock-level">
+                            <div class="progress-bar critical" style="width: 15%"></div>
+                            <span class="stock-value">3/20 cans</span>
+                        </div>
+                        <div class="ingredient-meta">
+                            <div class="meta-item">
+                                <span class="label">Category:</span>
+                                <span>Canned Goods</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Threshold:</span>
+                                <span>5</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Expires:</span>
+                                <span class="expiration-badge warning">
+                                    <i class="fas fa-clock"></i> 3 days
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Location:</span>
+                                <span class="location-badge pantry">
+                                    <i class="fas fa-box"></i> Pantry
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="dropdown actions-dropdown">
+                            <button class="actions-toggle">
+                                <i class="fas fa-ellipsis-v"></i> Actions
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="action-btn view" data-modal="view-details">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="action-btn edit" data-modal="edit-ingredient">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="action-btn adjust" data-modal="adjust-stock">
+                                    <i class="fas fa-sliders-h"></i> Adjust
+                                </button>
+                                <div class="dropdown-divider"></div>
+                                <button class="action-btn reorder" data-modal="create-order">
+                                    <i class="fas fa-truck"></i> Reorder
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional ingredient cards would go here -->
+            </div>
+
+            <!-- Grid View Pagination -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Cards per page:</span>
+                        <select class="form-control">
+                            <option>12</option>
+                            <option selected>24</option>
+                            <option>48</option>
+                            <option>96</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-24 of 124 ingredients</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <button class="page-number">4</button>
+                            <button class="page-number">5</button>
+                        </div>
+                        
+                        <button class="pagination-btn next">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
 </div>
-{%endblock%}
+{% endblock %}

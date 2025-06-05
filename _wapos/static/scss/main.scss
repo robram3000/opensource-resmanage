@@ -28,9 +28,11 @@
 @use 'component/_admin_im_stocklevel.scss';
 
 @use 'component/_admin_mu_create.scss';
-
+@use 'component/_admin_dashboard.scss';
 @use 'base/_admin_typography.scss';
 @use 'base/_mixin.scss';
+@use 'component/_admin_tm_bookingcalendar.scss';
+
 
 .main-container {
   min-height: 100vh;

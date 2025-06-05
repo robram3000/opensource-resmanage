@@ -138,10 +138,39 @@ $dark-surface-tertiary: color.adjust($dark-surface, $lightness: 15%);
   --border-radius: 0.5rem;
   --transition-speed: 0.3s;
 }
+// =============================================
+// Booking Calendar Variables
+// =============================================
+
+// Calendar dimensions
+$booking-calendar-cell-size: 2.5rem;
+$booking-calendar-header-height: 3rem;
+$booking-calendar-day-header-height: 2rem;
+
+// Calendar colors - extending existing system
+$booking-available-bg: var(--success-color, #28a745); // Fallback to light theme success color
+$booking-available-bg-fallback: #28a745; // For Sass color functions
+
+$booking-unavailable-bg: var(--danger-color, #dc3545);
+$booking-unavailable-bg-fallback: #dc3545;
+
+$booking-partial-bg: var(--warning-color, #ffc107);
+$booking-partial-bg-fallback: #ffc107;
+
+$booking-selected-bg: var(--accent-color, #0f5788);
+$booking-selected-bg-fallback: #0f5788;
+
+$booking-hover-bg: var(--accent-light, #8bb8d6);
+$booking-hover-bg-fallback: #8bb8d6;
+$booking-current-day-border: 2px solid var(--primary-color);
+
+// Calendar transitions
+$booking-transition: all var(--transition-speed) ease;
 
 // =============================================
 // Dark Theme Overrides
 // =============================================
+
 
 .dark-theme {
   // Base Colors

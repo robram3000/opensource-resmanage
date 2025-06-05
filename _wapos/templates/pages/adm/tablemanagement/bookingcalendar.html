@@ -1,0 +1,100 @@
+{% extends "pages/adm/admn.html" %}
+{% block content %}
+<div class="booking-calendar-container">
+  <div class="booking-calendar-header">
+    <button class="booking-calendar-nav-prev" aria-label="Previous month">
+      &larr;
+    </button>
+    
+    <h2 class="booking-calendar-title">June 2023</h2>
+    
+    <button class="booking-calendar-nav-next" aria-label="Next month">
+      &rarr;
+    </button>
+  </div>
+  
+  <div class="booking-calendar-grid">
+    <!-- Day headers -->
+    <div class="booking-calendar-day-header">Sun</div>
+    <div class="booking-calendar-day-header">Mon</div>
+    <div class="booking-calendar-day-header">Tue</div>
+    <div class="booking-calendar-day-header">Wed</div>
+    <div class="booking-calendar-day-header">Thu</div>
+    <div class="booking-calendar-day-header">Fri</div>
+    <div class="booking-calendar-day-header">Sat</div>
+    
+    <!-- Calendar days -->
+    <!-- These would be generated dynamically in your template -->
+    <div class="booking-calendar-day booking-day-outside">
+      <span class="booking-day-number">28</span>
+    </div>
+    <div class="booking-calendar-day booking-day-outside">
+      <span class="booking-day-number">29</span>
+    </div>
+    <div class="booking-calendar-day booking-day-outside">
+      <span class="booking-day-number">30</span>
+    </div>
+    <div class="booking-calendar-day">
+      <span class="booking-day-number">1</span>
+      <div class="booking-day-status booking-status-available"></div>
+    </div>
+    <div class="booking-calendar-day booking-day-current">
+      <span class="booking-day-number">2</span>
+      <div class="booking-day-status booking-status-partial"></div>
+    </div>
+    <!-- More days... -->
+  </div>
+  
+  <div class="booking-calendar-footer">
+    <div class="booking-legend">
+      <div class="booking-legend-item">
+        <div class="booking-legend-color legend-available"></div>
+        <span>Available</span>
+      </div>
+      <div class="booking-legend-item">
+        <div class="booking-legend-color legend-partial"></div>
+        <span>Limited</span>
+      </div>
+      <div class="booking-legend-item">
+        <div class="booking-legend-color legend-unavailable"></div>
+        <span>Booked</span>
+      </div>
+      <div class="booking-legend-item">
+        <div class="booking-legend-color legend-selected"></div>
+        <span>Selected</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Time slot selector (shown after date selection) -->
+<div class="booking-time-slots-container" style="display: none;">
+  <h3 class="booking-time-slots-title">Select a Time</h3>
+  <div class="booking-time-slots">
+    <div class="booking-time-slot">9:00 AM</div>
+    <div class="booking-time-slot booking-slot-unavailable">10:00 AM</div>
+    <div class="booking-time-slot">11:00 AM</div>
+    <!-- More time slots... -->
+  </div>
+</div>
+
+<!-- Booking summary (shown after time selection) -->
+<div class="booking-summary-container" style="display: none;">
+  <h3 class="booking-summary-title">Your Booking</h3>
+  <div class="booking-summary-details">
+    <div class="booking-summary-item">
+      <span class="booking-summary-label">Date:</span>
+      <span class="booking-summary-value">June 15, 2023</span>
+    </div>
+    <div class="booking-summary-item">
+      <span class="booking-summary-label">Time:</span>
+      <span class="booking-summary-value">2:00 PM - 3:00 PM</span>
+    </div>
+    <div class="booking-summary-item">
+      <span class="booking-summary-label">Duration:</span>
+      <span class="booking-summary-value">1 hour</span>
+    </div>
+  </div>
+  <button class="booking-confirm-btn">Confirm Booking</button>
+</div>
+{% endblock %}

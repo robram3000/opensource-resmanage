@@ -22,6 +22,9 @@ def activity_logs():
 @admin.route('/table-manage', methods=['GET', 'POST'])
 def table_manage():
     return render_template('pages/adm/tablemanagement/tabletemplate.html')
+@admin.route('/booking-calendar', methods=['GET', 'POST'])
+def booking_calendar():
+    return render_template('pages/adm/tablemanagement/bookingcalendar.html')
 
 
 @admin.route('/stocks-level', methods=['GET', 'POST'])

@@ -1,0 +1,335 @@
+
+@use '../base/_admin_variables' as *;
+@use 'sass:map';
+@use 'sass:color';
+.booking-calendar-container {
+  font-family: var(--font-family-sans-serif);
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-md);
+  margin-bottom: map.get($spacers, 4);
+}
+
+.booking-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: map.get($spacers, 3);
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+  
+  .booking-calendar-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .booking-calendar-nav {
+    display: flex;
+    gap: map.get($spacers, 2);
+    
+    button {
+      background-color: transparent;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: map.get($spacers, 1) map.get($spacers, 2);
+      border-radius: calc(var(--border-radius) / 2);
+      transition: $booking-transition;
+      
+      &:hover {
+        background-color: var(--primary-hover);
+      }
+      
+      &:active {
+        background-color: var(--primary-active);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.booking-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: var(--border-color);
+  border-left: 1px solid var(--border-color);
+}
+
+.booking-calendar-day-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: $booking-calendar-day-header-height;
+  background-color: var(--surface-secondary);
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  
+  &:first-child {
+    border-top-left-radius: var(--border-radius);
+  }
+  
+  &:last-child {
+    border-top-right-radius: var(--border-radius);
+  }
+}
+
+.booking-calendar-day {
+  position: relative;
+  aspect-ratio: 1/1;
+  min-height: $booking-calendar-cell-size;
+  background-color: var(--surface-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: map.get($spacers, 1);
+  transition: $booking-transition;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: var(--surface-secondary-hover);
+  }
+  
+  &.booking-day-current {
+    border: $booking-current-day-border;
+  }
+  
+  &.booking-day-outside {
+    color: var(--text-secondary);
+    background-color: var(--surface-secondary);
+    
+    &:hover {
+      background-color: var(--surface-secondary-hover);
+    }
+  }
+  
+  &.booking-day-disabled {
+    color: var(--text-secondary);
+    background-color: var(--surface-secondary);
+    cursor: not-allowed;
+    
+    .booking-day-number {
+      opacity: 0.5;
+    }
+  }
+  
+  .booking-day-number {
+    font-weight: 500;
+    margin-bottom: map.get($spacers, 1);
+  }
+  
+  .booking-day-status {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    margin-top: auto;
+    
+    &.booking-status-available {
+      background-color: $booking-available-bg;
+    }
+    
+    &.booking-status-unavailable {
+      background-color: $booking-unavailable-bg;
+    }
+    
+    &.booking-status-partial {
+      background-color: $booking-partial-bg;
+    }
+  }
+  
+  &.booking-day-selected {
+    background-color: $booking-selected-bg;
+    color: var(--white);
+    
+    .booking-day-status {
+      background-color: var(--white);
+    }
+    
+    &:hover {
+      background-color: $booking-selected-bg;
+    }
+  }
+  
+  &.booking-day-range-start {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+  }
+  
+  &.booking-day-range-end {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+  }
+  
+  &.booking-day-in-range {
+    background-color: $booking-hover-bg;
+    border-radius: 0;
+  }
+}
+
+.booking-calendar-footer {
+  padding: map.get($spacers, 3);
+  background-color: var(--surface-secondary);
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  
+  .booking-legend {
+    display: flex;
+    justify-content: center;
+    gap: map.get($spacers, 4);
+    flex-wrap: wrap;
+    
+    .booking-legend-item {
+      display: flex;
+      align-items: center;
+      gap: map.get($spacers, 1);
+      font-size: 0.85rem;
+      
+      .booking-legend-color {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        
+        &.legend-available {
+          background-color: $booking-available-bg;
+        }
+        
+        &.legend-unavailable {
+          background-color: $booking-unavailable-bg;
+        }
+        
+        &.legend-partial {
+          background-color: $booking-partial-bg;
+        }
+        
+        &.legend-selected {
+          background-color: $booking-selected-bg;
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .booking-calendar-day {
+    padding: map.get($spacers, 0.5);
+    
+    .booking-day-number {
+      font-size: 0.8rem;
+    }
+  }
+  
+  .booking-legend {
+    justify-content: flex-start !important;
+    gap: map.get($spacers, 2) !important;
+  }
+}
+
+// Animation for calendar transitions
+@keyframes booking-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.booking-calendar-grid {
+  animation: booking-fade-in 0.3s ease-out;
+}
+
+// Time slot selector styles
+.booking-time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: map.get($spacers, 2);
+  margin-top: map.get($spacers, 3);
+  
+  .booking-time-slot {
+    padding: map.get($spacers, 2);
+    text-align: center;
+    background-color: var(--surface-secondary);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: $booking-transition;
+    
+    &:hover {
+      background-color: var(--surface-secondary-hover);
+    }
+    
+    &.booking-slot-selected {
+      background-color: $booking-selected-bg;
+      color: var(--white);
+    }
+    
+    &.booking-slot-unavailable {
+      background-color: $booking-unavailable-bg;
+      color: var(--white);
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Booking summary styles
+.booking-summary-container {
+  background-color: var(--surface-secondary);
+  padding: map.get($spacers, 3);
+  border-radius: var(--border-radius);
+  margin-top: map.get($spacers, 3);
+  
+  .booking-summary-title {
+    font-weight: 600;
+    margin-bottom: map.get($spacers, 2);
+    color: var(--primary-color);
+  }
+  
+  .booking-summary-details {
+    display: grid;
+    gap: map.get($spacers, 2);
+    
+    .booking-summary-item {
+      display: flex;
+      justify-content: space-between;
+      
+      .booking-summary-label {
+        font-weight: 500;
+        color: var(--text-secondary);
+      }
+      
+      .booking-summary-value {
+        font-weight: 600;
+      }
+    }
+  }
+  
+  .booking-confirm-btn {
+    width: 100%;
+    margin-top: map.get($spacers, 3);
+    padding: map.get($spacers, 2);
+    background-color: $booking-available-bg;
+    color: var(--white);
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: $booking-transition;
+    
+    &:hover {
+      background-color: color.adjust($booking-available-bg-fallback, $lightness: -10%);
+    }
+    
+    &:disabled {
+      background-color: var(--gray-500);
+      cursor: not-allowed;
+    }
+  }
+}

@@ -52,7 +52,7 @@
         </div>
 
         <div class="sidebar-menu">
-            <a href="#" class="menu-item">
+            <a href="{{url_for("admn.dashboard")}}" class="menu-item">
                 <i class="fas fa-tachometer-alt"></i>
                 <span>Dashboard</span>
             </a>
@@ -119,7 +119,7 @@
                     <a href="#" class="menu-item">Floor Plan Designer</a>
                     <a href="#" class="menu-item">Live Table Status</a>
                     <a href="#" class="menu-item">Reservation</a>
-                    <a href="#" class="menu-item">Booking calendar</a>
+                    <a href="{{url_for("admn.booking_calendar")}}" class="menu-item">Booking calendar</a>
                     <a href="#" class="menu-item">Walk-In Management</a>
                 </div>
             </div>
@@ -145,6 +145,223 @@
 
     <main class="main-content" id="main">
         {% block content %}
+
+        <div class="dashboard-container">
+ 
+    <div class="content-wrapper">
+      <!-- Summary Cards -->
+      <div class="summary-cards">
+        <div class="card">
+          <div class="card-icon bg-success">
+            <i class="icon-sales"></i>
+          </div>
+          <div class="card-content">
+            <span class="card-label">Today's Sales</span>
+            <h3 class="card-value">$4,892</h3>
+            <span class="card-change positive">
+              <i class="icon-arrow-up"></i> 12.5% from yesterday
+            </span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon bg-warning">
+            <i class="icon-reservations"></i>
+          </div>
+          <div class="card-content">
+            <span class="card-label">Reservations</span>
+            <h3 class="card-value">42</h3>
+            <span class="card-change positive">
+              <i class="icon-arrow-up"></i> 3 more than usual
+            </span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon bg-danger">
+            <i class="icon-inventory"></i>
+          </div>
+          <div class="card-content">
+            <span class="card-label">Low Stock Items</span>
+            <h3 class="card-value">8</h3>
+            <span class="card-change negative">
+              <i class="icon-alert"></i> Needs attention
+            </span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-icon bg-info">
+            <i class="icon-staff"></i>
+          </div>
+          <div class="card-content">
+            <span class="card-label">Staff On Duty</span>
+            <h3 class="card-value">14</h3>
+            <span class="card-change">2 shifts today</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Charts Row -->
+      <div class="chart-row">
+        <div class="chart-card wide">
+          <div class="chart-header">
+            <h3>Sales Performance</h3>
+            <div class="chart-actions">
+              <select class="chart-period">
+                <option>Last 7 Days</option>
+                <option selected>Last 30 Days</option>
+                <option>This Quarter</option>
+                <option>Custom Range</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="salesChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Revenue Sources</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="revenueChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Charts Row -->
+      <div class="chart-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Top Menu Items</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="menuItemsChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Inventory Status</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="inventoryChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <h3>Reservation Trends</h3>
+          </div>
+          <div class="chart-container">
+            <canvas id="reservationChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Tables Row -->
+      <div class="table-row">
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Recent Orders</h3>
+            <button class="btn-view-all">View All</button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Items</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#ORD-7894</td>
+                  <td>John Smith</td>
+                  <td>3</td>
+                  <td>$48.50</td>
+                  <td><span class="status completed">Completed</span></td>
+                </tr>
+                <tr>
+                  <td>#ORD-7893</td>
+                  <td>Sarah Johnson</td>
+                  <td>5</td>
+                  <td>$92.75</td>
+                  <td><span class="status in-progress">In Progress</span></td>
+                </tr>
+                <tr>
+                  <td>#ORD-7892</td>
+                  <td>Michael Brown</td>
+                  <td>2</td>
+                  <td>$34.00</td>
+                  <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                  <td>#ORD-7891</td>
+                  <td>Emily Davis</td>
+                  <td>4</td>
+                  <td>$67.25</td>
+                  <td><span class="status completed">Completed</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Low Stock Items</h3>
+            <button class="btn-view-all">View All</button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Current Stock</th>
+                  <th>Threshold</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Chicken Breast</td>
+                  <td>12 lbs</td>
+                  <td>15 lbs</td>
+                  <td><span class="status warning">Low</span></td>
+                </tr>
+                <tr>
+                  <td>Fresh Basil</td>
+                  <td>3 oz</td>
+                  <td>8 oz</td>
+                  <td><span class="status danger">Critical</span></td>
+                </tr>
+                <tr>
+                  <td>Parmesan Cheese</td>
+                  <td>4 lbs</td>
+                  <td>5 lbs</td>
+                  <td><span class="status warning">Low</span></td>
+                </tr>
+                <tr>
+                  <td>Olive Oil</td>
+                  <td>2 bottles</td>
+                  <td>3 bottles</td>
+                  <td><span class="status warning">Low</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
         {% endblock %}
     </main>
 </div>
@@ -152,6 +369,8 @@
     <script src="{{ url_for('static', filename='js/admn/sidebar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admn/usermenu.js') }}"></script>
      <script src="{{ url_for('static', filename='js/admn/tablemanagement.js') }}"></script>
-    
+       <script src="{{ url_for('static', filename='js/admn/dashboard.js') }}"></script>
+          <script src="{{ url_for('static', filename='js/admn/bookingcalendar.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
