@@ -1,0 +1,404 @@
+{% extends "pages/adm/admn.html" %}
+{% block content %}
+<div class="user-management-container">
+    <!-- Header Section with Title and Quick Stats -->
+    <div class="management-header">
+        <h2 class="management-title">
+            <i class="fas fa-users-cog"></i> User Management
+            <span class="badge total-users">Total: 1</span>
+        </h2>
+        <div class="quick-stats">
+            <div class="stat-card">
+                <i class="fas fa-user-check"></i>
+                <div>
+                    <span class="stat-value">1</span>
+                    <span class="stat-label">Active</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-user-clock"></i>
+                <div>
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Pending</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-user-lock"></i>
+                <div>
+                    <span class="stat-value">0</span>
+                    <span class="stat-label">Suspended</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Action Bar -->
+    <div class="action-bar">
+        <!-- Left Side Actions -->
+        <div class="action-group">
+            <div class="search-container with-advanced">
+                <i class="search-icon fas fa-search"></i>
+                <input type="text" placeholder="Search users..." class="search-input">
+                <button class="advanced-search-toggle" title="Advanced Search">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+            
+            <div class="bulk-actions">
+                <select class="bulk-select">
+                    <option value="">Bulk Actions</option>
+                    <option value="activate">Activate Selected</option>
+                    <option value="deactivate">Deactivate Selected</option>
+                    <option value="delete">Delete Selected</option>
+                    <option value="export">Export Selected</option>
+                </select>
+                <button class="apply-bulk" disabled>Apply</button>
+            </div>
+        </div>
+
+        <!-- Right Side Actions -->
+        <div class="action-group">
+            <div class="view-controls">
+                <button class="view-btn grid-view" title="Grid View">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn list-view active" title="List View">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button class="view-btn refresh" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            
+            <div class="export-container dropdown">
+                <button class="export-btn dropdown-toggle">
+                    <i class="fas fa-file-export"></i>
+                    <span>Export</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="export-option excel">
+                        <i class="fas fa-file-excel"></i> Excel
+                    </button>
+                    <button class="export-option pdf">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="export-option csv">
+                        <i class="fas fa-file-csv"></i> CSV
+                    </button>
+                    <button class="export-option print">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+            
+            <div class="add-user-container dropdown">
+                <button class="add-button dropdown-toggle">
+                    <i class="fas fa-plus"></i>
+                    <span>Add User</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="add-option">
+                        <i class="fas fa-user-plus"></i> Staff
+                    </button>
+                    <button class="add-option">
+                        <i class="fas fa-users"></i> Supplier
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Search Panel (Collapsible) -->
+    <div class="advanced-search-panel">
+        <div class="search-fields">
+            <div class="form-group">
+                <label>Role</label>
+                <select class="form-control" multiple>
+                    <option value="admin">Administrator</option>
+                    <option value="editor">Editor</option>
+                    <option value="author">Author</option>
+                    <option value="subscriber">Subscriber</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Status</label>
+                <select class="form-control" multiple>
+                    <option value="active">Active</option>
+                    <option value="pending">Pending</option>
+                    <option value="suspended">Suspended</option>
+                    <option value="banned">Banned</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Registration Date</label>
+                <div class="date-range">
+                    <input type="date" class="form-control" placeholder="From">
+                    <span>to</span>
+                    <input type="date" class="form-control" placeholder="To">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Custom Fields</label>
+                <input type="text" class="form-control" placeholder="Search custom fields">
+            </div>
+        </div>
+        <div class="search-actions">
+            <button class="search-btn primary">Search</button>
+            <button class="search-btn secondary">Reset</button>
+            <button class="search-btn cancel">Cancel</button>
+            <button class="search-btn link">Save Search</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+        <!-- List View (Default) -->
+        <div class="list-view-container">
+            <!-- Users Table -->
+            <div class="table-container with-checkboxes">
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th width="40px">
+                                <input type="checkbox" class="select-all">
+                            </th>
+                            <th class="sortable">
+                                <span>ID</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable active asc">
+                                <span>Name</span>
+                                <i class="fas fa-sort-up"></i>
+                            </th>
+                            <th>Avatar</th>
+                            <th class="sortable">
+                                <span>Email</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th>Role</th>
+                            <th>Status</th>
+                            <th class="sortable">
+                                <span>Last Active</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable">
+                                <span>Registered</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="user-active">
+                            <td><input type="checkbox" class="user-checkbox"></td>
+                            <td>45</td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="details">
+                                        <strong>Roberto V. Ramirez jr.</strong>
+                                        <small>@sarahj</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="avatar">
+                                        <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-1/503399914_2816253461894137_375945493000544299_n.jpg?stp=c0.0.694.694a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeHaFad91jyDG2NLlrTCMu1DHsXKrN1CAmQexcqs3UICZIzJYIzeYQSuoPxFCadGE-Q7v6BSnsTWo9o1e4lIhZra&_nc_ohc=-QTp043ReOEQ7kNvwH0zXrb&_nc_oc=AdkcnsTrzyO5nAy4rWKJU9xNsZA0pE2AjJHa-K6FHAnyrYFQ2qvQKpTqEmWarzt6grQ&_nc_zt=24&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=e6rIppp7B8vaE0gVLC3QxQ&oh=00_AfOQ6FWQky2dFGgCc_Y8xxStMn5tD4DdrktDHbPluoHoJw&oe=6846C5AF" alt="User Avatar">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>robram3000@gmail.com</td>
+                            <td><span class="role-badge admin">Administrator</span></td>
+                            <td>
+                                <span class="status-badge active">
+                                    <i class="fas fa-circle"></i> Active
+                                </span>
+                            </td>
+                            <td>2 hours ago</td>
+                            <td>Jan 15, 2023</td>
+                            <td class="actions-cell">
+                                <div class="dropdown actions-dropdown">
+                                    <button class="actions-toggle">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="action-btn view">
+                                            <i class="fas fa-eye"></i> View Profile
+                                        </button>
+                                        <button class="action-btn edit">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="action-btn message">
+                                            <i class="fas fa-envelope"></i> Send Message
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="action-btn deactivate">
+                                            <i class="fas fa-user-slash"></i> Deactivate
+                                        </button>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Rows per page:</span>
+                        <select class="form-control">
+                            <option>10</option>
+                            <option selected>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                    <div class="selected-count">
+                        <span>0</span> of <span>1</span> selected
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-1 of 1 users</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                        </div>
+                        
+                        <button class="pagination-btn next" disabled>
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last" disabled>
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid View (Hidden by default) -->
+        <div class="grid-view-container" style="display: none;">
+            <div class="user-grid">
+                <div class="user-card">
+                    <div class="card-header">
+                        <input type="checkbox" class="user-checkbox">
+                        <div class="avatar">
+                            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-1/503399914_2816253461894137_375945493000544299_n.jpg?stp=c0.0.694.694a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeHaFad91jyDG2NLlrTCMu1DHsXKrN1CAmQexcqs3UICZIzJYIzeYQSuoPxFCadGE-Q7v6BSnsTWo9o1e4lIhZra&_nc_ohc=-QTp043ReOEQ7kNvwH0zXrb&_nc_oc=AdkcnsTrzyO5nAy4rWKJU9xNsZA0pE2AjJHa-K6FHAnyrYFQ2qvQKpTqEmWarzt6grQ&_nc_zt=24&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=e6rIppp7B8vaE0gVLC3QxQ&oh=00_AfOQ6FWQky2dFGgCc_Y8xxStMn5tD4DdrktDHbPluoHoJw&oe=6846C5AF" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h4>Roberto V. Ramirez jr.</h4>
+                            <p class="email">robram3000@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-meta">
+                            <div class="meta-item">
+                                <span class="label">Role:</span>
+                                <span class="role-badge admin">Administrator</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Status:</span>
+                                <span class="status-badge active">
+                                    <i class="fas fa-circle"></i> Active
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Last Active:</span>
+                                <span>2 hours ago</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Registered:</span>
+                                <span>Jan 15, 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="dropdown actions-dropdown">
+                            <button class="actions-toggle">
+                                <i class="fas fa-ellipsis-v"></i> Actions
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="action-btn view">
+                                    <i class="fas fa-eye"></i> View Profile
+                                </button>
+                                <button class="action-btn edit">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="action-btn message">
+                                    <i class="fas fa-envelope"></i> Send Message
+                                </button>
+                                <div class="dropdown-divider"></div>
+                                <button class="action-btn deactivate">
+                                    <i class="fas fa-user-slash"></i> Deactivate
+                                </button>
+                                <button class="action-btn delete">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid View Pagination -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Cards per page:</span>
+                        <select class="form-control">
+                            <option>12</option>
+                            <option selected>24</option>
+                            <option>48</option>
+                            <option>96</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-1 of 1 users</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                        </div>
+                        
+                        <button class="pagination-btn next" disabled>
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last" disabled>
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     {% include "pages/adm/staffmanagement/menuuser/quickview.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/create.html" %}
+</div>
+{% endblock %}
+

@@ -1,4 +1,8 @@
-// Colors - Light Theme
+// =============================================
+// Color System
+// =============================================
+
+// Base Colors - Light Theme
 $white: #ffffff;
 $black: #000000;
 $gray-100: #f8f9fa;
@@ -11,39 +15,173 @@ $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
 
-// Colors - Dark Theme
-$dark-bg: #eeeeee;
-$dark-surface: #3C3C3C;
+// Base Colors - Dark Theme
+$dark-bg: #1a1a1a;
+$dark-surface: #2d2d2d;
 $dark-primary: #0f3460;
 $dark-secondary: #533483;
-$dark-accent: #77186f;
+$dark-accent: #8e44ad;
 $dark-text: #f1f1f1;
 $dark-text-secondary: #b8b8b8;
 
-// Theme Variables
+// Semantic Colors - Light Theme
+$light-accent: #0f5788;
+$light-primary: #2c3e50;
+$light-secondary: #ecf0f1;
+$light-success: #28a745;
+$light-info: #17a2b8;
+$light-warning: #ffc107;
+$light-danger: #dc3545;
+
+// Semantic Colors - Dark Theme
+$dark-success: #218838;
+$dark-info: #138496;
+$dark-warning: #e0a800;
+$dark-danger: #c82333;
+
+// =============================================
+// Color Variants (Using Modern Sass Functions)
+// =============================================
+
+@use "sass:color";
+
+// Light theme variants
+$light-primary-hover: color.adjust($light-primary, $lightness: -10%);
+$light-primary-active: color.adjust($light-primary, $lightness: -15%);
+$light-accent-hover: color.adjust($light-accent, $lightness: -10%);
+$light-accent-active: color.adjust($light-accent, $lightness: -15%);
+$light-accent-light: color.adjust($light-accent, $lightness: 30%);
+$light-secondary-hover: color.adjust($light-secondary, $lightness: -5%);
+
+// Dark theme variants
+$dark-primary-hover: color.adjust($dark-primary, $lightness: 10%);
+$dark-primary-active: color.adjust($dark-primary, $lightness: 15%);
+$dark-accent-hover: color.adjust($dark-accent, $lightness: 10%);
+$dark-accent-active: color.adjust($dark-accent, $lightness: 15%);
+$dark-accent-light: color.adjust($dark-accent, $lightness: -20%);
+$dark-secondary-hover: color.adjust($dark-secondary, $lightness: 5%);
+
+// Surface variants
+$surface-secondary: $gray-200;
+$surface-secondary-hover: color.adjust($gray-200, $lightness: -5%);
+$dark-surface-secondary: color.adjust($dark-surface, $lightness: 5%);
+$dark-surface-secondary-hover: color.adjust($dark-surface, $lightness: 10%);
+$dark-surface-tertiary: color.adjust($dark-surface, $lightness: 15%);
+
+// =============================================
+// CSS Custom Properties
+// =============================================
+
 :root {
+  // Base Colors
+  --white: #{$white};
+  --black: #{$black};
+  
+  // Gray Scale
+  --gray-100: #{$gray-100};
+  --gray-200: #{$gray-200};
+  --gray-300: #{$gray-300};
+  --gray-400: #{$gray-400};
+  --gray-500: #{$gray-500};
+  --gray-600: #{$gray-600};
+  --gray-700: #{$gray-700};
+  --gray-800: #{$gray-800};
+  --gray-900: #{$gray-900};
+  
+  // Theme Colors
   --bg-color: #{$white};
   --surface-color: #{$gray-100};
-  --primary-color: #2c3e50;
-  --secondary-color: #ecf0f1;
-  --accent-color: #0f5788;
   --text-color: #{$gray-900};
   --text-secondary: #{$gray-600};
   --border-color: #{$gray-300};
+  
+  // Primary Colors
+  --primary-color: #{$light-primary};
+  --primary-hover: #{$light-primary-hover};
+  --primary-active: #{$light-primary-active};
+  
+  // Accent Colors
+  --accent-color: #{$light-accent};
+  --accent-hover: #{$light-accent-hover};
+  --accent-active: #{$light-accent-active};
+  --accent-light: #{$light-accent-light};
+  
+  // Secondary Colors
+  --secondary-color: #{$light-secondary};
+  --secondary-hover: #{$light-secondary-hover};
+  
+  // State Colors
+  --success-color: #{$light-success};
+  --info-color: #{$light-info};
+  --warning-color: #{$light-warning};
+  --danger-color: #{$light-danger};
+  
+  // Surface Variants
+  --surface-secondary: #{$surface-secondary};
+  --surface-secondary-hover: #{$surface-secondary-hover};
+  --surface-tertiary: #{$gray-300};
+  
+  // Shadows
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  // Spacing
+  --spacer: 1rem;
+  
+  // Typography
+  --font-family-sans-serif: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: 0.9rem;
+  --line-height-base: 1.6;
+  
+  // Layout
+  --border-radius: 0.5rem;
+  --transition-speed: 0.3s;
 }
 
+// =============================================
+// Dark Theme Overrides
+// =============================================
+
 .dark-theme {
+  // Base Colors
   --bg-color: #{$dark-bg};
   --surface-color: #{$dark-surface};
-  --primary-color: #{$dark-primary};
-  --secondary-color: #{$dark-secondary};
-  --accent-color: #{$dark-accent};
   --text-color: #{$dark-text};
   --text-secondary: #{$dark-text-secondary};
   --border-color: #{rgba($white, 0.1)};
+  
+  // Primary Colors
+  --primary-color: #{$dark-primary};
+  --primary-hover: #{$dark-primary-hover};
+  --primary-active: #{$dark-primary-active};
+  
+  // Accent Colors
+  --accent-color: #{$dark-accent};
+  --accent-hover: #{$dark-accent-hover};
+  --accent-active: #{$dark-accent-active};
+  --accent-light: #{$dark-accent-light};
+  
+  // Secondary Colors
+  --secondary-color: #{$dark-secondary};
+  --secondary-hover: #{$dark-secondary-hover};
+  
+  // State Colors
+  --success-color: #{$dark-success};
+  --info-color: #{$dark-info};
+  --warning-color: #{$dark-warning};
+  --danger-color: #{$dark-danger};
+  
+  // Surface Variants
+  --surface-secondary: #{$dark-surface-secondary};
+  --surface-secondary-hover: #{$dark-surface-secondary-hover};
+  --surface-tertiary: #{$dark-surface-tertiary};
 }
 
-// Spacing
+// =============================================
+// Spacing System
+// =============================================
+
 $spacer: 1rem;
 $spacers: (
   0: 0,
@@ -54,19 +192,9 @@ $spacers: (
   5: $spacer * 3,
 );
 
-// Typography
-$font-family-sans-serif: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// =============================================
+// Layout Variables
+// =============================================
 
-// Layout
 $sidebar-width: 240px;
 $topbar-height: 60px;
-$transition-speed: 0.3s;
-$border-radius: 0.5rem;
-
-// Shadows
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-$shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);

@@ -1,0 +1,34 @@
+@use '_admin_variables' as *;
+@use 'sass:map';
+
+@mixin transition($property: all, $duration: --transition-speed, $timing: ease-in-out) {
+  transition: $property $duration $timing;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin shadow($level: 'md') {
+  @if $level == 'sm' {
+    box-shadow: --shadow-sm;
+  } @else if $level == 'md' {
+    box-shadow: --shadow;
+  } @else if $level == 'lg' {
+    box-shadow: --shadow-lg;
+  }
+}
+
+@mixin card-style {
+  background-color: var(--surface-color);
+  border-radius: --border-radius;
+  padding: map.get($spacers, 3);
+  @include shadow('sm');
+  @include transition;
+  
+  &:hover {
+    @include shadow('md');
+  }
+}

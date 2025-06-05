@@ -1,0 +1,67 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use 'sass:map' ;
+@use 'sass:color';
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: map.get($spacers, 2);
+  
+  .pagination-info {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: map.get($spacers, 1);
+  }
+  
+  .pagination-btn {
+    @include flex-center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: --border-radius;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    @include transition;
+    
+    &:hover:not(:disabled) {
+      background-color: var(--surface-color);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  
+  .page-numbers {
+    display: flex;
+    gap: map.get($spacers, 1);
+  }
+  
+  .page-number {
+    @extend .pagination-btn;
+    
+    &.active {
+      background-color: var(--accent-color);
+      border-color: var(--accent-color);
+      color: white;
+    }
+  }
+  
+  .page-ellipsis {
+    @include flex-center;
+    width: 2rem;
+    height: 2rem;
+    color: var(--text-secondary);
+  }
+}

@@ -1,0 +1,77 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use 'sass:map' ;
+@use 'sass:color';
+.dropdown {
+  position: relative;
+  display: inline-block;
+  
+  &-toggle {
+    display: flex;
+    align-items: center;
+    gap: map.get($spacers, 1);
+    cursor: pointer;
+  }
+  
+  &-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    display: none;
+    min-width: 180px;
+    padding: map.get($spacers, 1) 0;
+    margin: map.get($spacers, 1) 0 0;
+    font-size: --font-size-base;
+    color: var(--text-color);
+    background-color: var(--surface-color);
+    border-radius: --border-radius;
+    box-shadow: --shadow-md;
+    
+    &.show {
+      display: block;
+    }
+  }
+  
+  &-divider {
+    height: 1px;
+    margin: map.get($spacers, 1) 0;
+    overflow: hidden;
+    background-color: var(--border-color);
+  }
+}
+
+
+
+.actions-dropdown {
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  
+  .action-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: map.get($spacers, 1) map.get($spacers, 2);
+    clear: both;
+    font-weight: 400;
+    color: var(--text-color);
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    
+    &:hover {
+      background-color: var(--bg-color);
+      color: var(--accent-color);
+    }
+    
+    i {
+      margin-right: map.get($spacers, 1);
+      width: 1rem;
+      text-align: center;
+    }
+  }
+}

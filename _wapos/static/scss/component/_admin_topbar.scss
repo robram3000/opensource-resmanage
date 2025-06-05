@@ -7,13 +7,13 @@
   right: 0;
   height: $topbar-height;
   background-color: var(--surface-color);
-  box-shadow: $shadow-sm;
+  box-shadow: --shadow-sm;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 $spacer * 2;
   z-index: 900;
-  transition: left $transition-speed, background-color 0.3s ease;
+  transition: left --transition-speed, background-color 0.3s ease;
   border-bottom: 1px solid var(--border-color);
 
   &-left {
@@ -43,7 +43,7 @@
   cursor: pointer;
   padding: $spacer * 0.5;
   transition: all 0.2s ease;
-  border-radius: $border-radius;
+  border-radius: --border-radius;
   
   &:hover {
     color: var(--accent-color);
@@ -60,7 +60,7 @@
     cursor: pointer;
     padding: $spacer * 0.5;
     transition: all 0.2s ease;
-    border-radius: $border-radius;
+    border-radius: --border-radius;
     
     &:hover {
       color: var(--accent-color);
@@ -79,7 +79,7 @@
     border: none;
     cursor: pointer;
     padding: $spacer * 0.5;
-    border-radius: $border-radius;
+    border-radius: --border-radius;
     transition: all 0.2s ease;
     
     .user-avatar {
@@ -119,8 +119,8 @@
     top: calc(100% + $spacer * 0.5);
     background-color: var(--surface-color);
     min-width: 200px;
-    box-shadow: $shadow-lg;
-    border-radius: $border-radius;
+    box-shadow: --shadow-lg;
+    border-radius: --border-radius;
     z-index: 1000;
     animation: fadeIn 0.2s ease-out;
     border: 1px solid var(--border-color);
@@ -168,7 +168,7 @@
     cursor: pointer;
     position: relative;
     padding: $spacer * 0.5;
-    border-radius: $border-radius;
+    border-radius: --border-radius;
     transition: all 0.2s ease;
     
     &:hover {

@@ -7,8 +7,8 @@
   left: 0;
   top: 0;
   background-color: var(--surface-color);
-  box-shadow: $shadow-md;
-  transition: width $transition-speed;
+  box-shadow: --shadow-md;
+  transition: width --transition-speed;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
-    height: $topbar-height;
+    height: --topbar-height;
     
     img {
       margin-right: $spacer;
@@ -130,7 +130,7 @@
   
   .dropdown-icon {
     margin-left: auto;
-    transition: transform $transition-speed;
+    transition: transform --transition-speed;
     font-size: 0.8rem;
   }
 }

@@ -13,9 +13,9 @@
   padding: $spacer * 2;
   margin-top: $topbar-height;
   margin-left: $sidebar-width;
-  transition: margin-left $transition-speed, background-color 0.3s ease;
+  transition: margin-left --transition-speed, background-color 0.3s ease;
   background-color: var(--bg-color);
-  border-top-left-radius: $border-radius * 2;
+  border-top-left-radius: calc(var(--border-radius) * 2);
   position: relative;
   overflow: hidden;
   

@@ -1,8 +1,9 @@
 {
   "name": "caps-wa-pos",
-  "version": "1.0.0","scripts": {
-  "sass:watch": "sass --watch _wapos/static/scss:_wapos/static/css --style compressed --load-path=_wapos/static/scss",
-  "sass:build": "sass _wapos/static/scss:_wapos/static/css --style compressed --load-path=_wapos/static/scss"
+  "version": "1.0.0",
+ "scripts": {
+  "sass:build": "sass _wapos/static/scss:_wapos/static/css --style compressed --no-source-map",
+  "sass:watch": "sass --watch _wapos/static/scss:_wapos/static/css --style compressed --no-source-map"
 },
   "devDependencies": {
     "sass": "^1.89.1"

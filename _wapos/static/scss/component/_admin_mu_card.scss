@@ -1,0 +1,28 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use 'sass:map' ;
+@use 'sass:color';
+.stat-card {
+  @include card-style;
+  @include flex-center;
+  gap: map.get($spacers, 2);
+  padding: map.get($spacers, 3);
+  
+  i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+  }
+  
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.quick-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: map.get($spacers, 3);
+  margin-bottom: map.get($spacers, 4);
+}

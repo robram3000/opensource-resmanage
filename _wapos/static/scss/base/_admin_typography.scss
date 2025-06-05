@@ -1,13 +1,31 @@
+@use '_admin_variables' as *;
+@use "sass:map";
+
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: $spacer;
+  color: var(--text-color);
+  margin-bottom: map.get($spacers, 2);
 }
 
-h2 {
+.management-title {
   font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: map.get($spacers, 3);
+  display: flex;
+  align-items: center;
+  gap: map.get($spacers, 2);
+  
+  .badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
 }
 
-p {
-  margin-bottom: $spacer;
-}   
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}

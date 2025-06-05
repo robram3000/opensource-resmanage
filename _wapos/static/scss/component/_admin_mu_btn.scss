@@ -1,0 +1,71 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use 'sass:map' ;
+@use 'sass:color';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: map.get($spacers, 2) map.get($spacers, 3);
+  border-radius: --border-radius;
+  font-weight: 500;
+  cursor: pointer;
+  @include transition;
+  border: 1px solid transparent;
+  gap: map.get($spacers, 2);
+  
+  &-primary {
+    background-color: var(--accent-color);
+    color: white;
+    
+    &:hover {
+     background-color: color-mix(in srgb, var(--accent-color), black 5%);
+    }
+  }
+  
+  &-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    
+    &:hover {
+      background-color: color-mix(in srgb, var(--accent-color), black 5%);
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    border-color: var(--border-color);
+    color: var(--text-color);
+    
+    &:hover {
+      background-color: var(--surface-color);
+    }
+  }
+  
+  &-sm {
+    padding: map.get($spacers, 1) map.get($spacers, 2);
+    font-size: 0.8rem;
+  }
+  
+  &-lg {
+    padding: map.get($spacers, 3) map.get($spacers, 4);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.action-btn {
+  @extend .btn;
+  @extend .btn-outline;
+  padding: map.get($spacers, 1) map.get($spacers, 2);
+  font-size: 0.8rem;
+  
+  i {
+    margin-right: map.get($spacers, 1);
+  }
+}

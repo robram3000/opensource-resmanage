@@ -13,6 +13,21 @@
 @use 'component/_admin_layout';
 
 
+//usermanagement under of admin
+@use 'component/_admin_mu_btn.scss';
+@use 'component/_admin_mu_card.scss';
+@use 'component/_admin_mu_dropdown.scss';
+@use 'component/_admin_mu_forms.scss';
+@use 'component/_admin_mu_pagination.scss';
+@use 'component/_admin_mu_tables.scss';
+@use 'component/_admin_um_usermange.scss';
+
+
+@use 'component/_admin_mu_create.scss';
+
+@use 'base/_admin_typography.scss';
+@use 'base/_mixin.scss';
+
 .main-container {
   min-height: 100vh;
   display: flex;

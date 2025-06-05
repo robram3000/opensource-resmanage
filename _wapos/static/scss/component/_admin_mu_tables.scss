@@ -1,0 +1,139 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use 'sass:map' ;
+@use 'sass:color';
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--surface-color);
+  border-radius: --border-radius;
+  overflow: hidden;
+  @include shadow('sm');
+  
+  th, td {
+    padding: map.get($spacers, 2) map.get($spacers, 3);
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  th {
+    font-weight: 600;
+    color: var(--text-secondary);
+    background-color: var(--surface-color);
+    
+    &.sortable {
+      cursor: pointer;
+      @include transition;
+      
+      &:hover {
+        color: var(--text-color);
+      }
+      
+      &.active {
+        color: var(--accent-color);
+      }
+    }
+  }
+  
+  tr {
+    @include transition;
+    
+    &:hover {
+      background-color: rgba(var(--accent-color), 0.05);
+    }
+    
+    &.user-active {
+      border-left: 3px solid #28a745;
+    }
+    
+    &.user-pending {
+      border-left: 3px solid #ffc107;
+    }
+    
+    &.user-suspended {
+      border-left: 3px solid #dc3545;
+    }
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: map.get($spacers, 2);
+    
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .details {
+      display: flex;
+      flex-direction: column;
+      
+      small {
+        color: var(--text-secondary);
+        font-size: 0.75rem;
+      }
+    }
+  }
+  
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: map.get($spacers, 1);
+    font-size: 0.75rem;
+    padding: map.get($spacers, 1) map.get($spacers, 2);
+    border-radius: 1rem;
+    font-weight: 500;
+    
+    &.active {
+      background-color: rgba(#28a745, 0.1);
+      color: #28a745;
+    }
+    
+    &.pending {
+      background-color: rgba(#ffc107, 0.1);
+      color: #ffc107;
+    }
+    
+    &.suspended {
+      background-color: rgba(#dc3545, 0.1);
+      color: #dc3545;
+    }
+    
+    i {
+      font-size: 0.5rem;
+    }
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: map.get($spacers, 1) map.get($spacers, 2);
+    border-radius: --border-radius;
+    font-size: 0.75rem;
+    font-weight: 500;
+    
+    &.admin {
+      background-color: rgba(#77186f, 0.1);
+      color: var(--accent-color);
+    }
+    
+    &.editor {
+      background-color: rgba(#0f5788, 0.1);
+      color: #0f5788;
+    }
+    
+    &.subscriber {
+      background-color: rgba(#6c757d, 0.1);
+      color: var(--text-secondary);
+    }
+  }
+}
