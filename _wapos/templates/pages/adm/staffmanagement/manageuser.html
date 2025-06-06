@@ -31,10 +31,6 @@
         </div>
     </div>
 
-    <!-- Row Actions Bar (Initially Hidden) -->
-    
-
-    <!-- Advanced Action Bar -->
     <div class="action-bar">
         <!-- Left Side Actions -->
         <div class="action-group">
@@ -101,10 +97,10 @@
                     <i class="fas fa-caret-down"></i>
                 </button>
                 <div class="dropdown-menu">
-                    <button class="add-option">
+                    <button class="add-option staff">
                         <i class="fas fa-user-plus"></i> Staff
                     </button>
-                    <button class="add-option">
+                    <button class="add-option supplier">
                         <i class="fas fa-users"></i> Supplier
                     </button>
                 </div>
@@ -437,9 +433,12 @@
     </div>
 
      {% include "pages/adm/staffmanagement/menuuser/quickview.html" %}
-     {% include "pages/adm/staffmanagement/menuuser/create.html" %}
-      {% include "pages/adm/staffmanagement/menuuser/delete.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/staff.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/supplier.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/delete.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/edit.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/deactivate.html" %}
+     {% include "pages/adm/staffmanagement/menuuser/message.html" %}
 </div>
-
 {% endblock %}
 

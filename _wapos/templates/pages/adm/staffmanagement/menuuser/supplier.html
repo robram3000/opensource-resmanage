@@ -1,0 +1,72 @@
+<div class="create-supplier">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Add New Supplier</h3>
+            <button class="close-modal" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <form id="addSupplierForm" class="supplier-form" method="POST" enctype="multipart/form-data">
+                {{ add_supplier_form.hidden_tag() }}
+                
+                <div class="form-group">
+                    {{ add_supplier_form.supplier_name.label }}
+                    {{ add_supplier_form.supplier_name(class="form-control", id="supplierName", required="required") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.contact_person.label }}
+                    {{ add_supplier_form.contact_person(class="form-control", id="contactPerson", required="required") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.email.label }}
+                    {{ add_supplier_form.email(class="form-control", id="supplierEmail", required="required") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.phone_number.label }}
+                    {{ add_supplier_form.phone_number(class="form-control", id="phoneNumber", required="required") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.address.label }}
+                    {{ add_supplier_form.address(class="form-control", rows="3", id="supplierAddress", required="required") }}
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        {{ add_supplier_form.supplier_type.label }}
+                        {{ add_supplier_form.supplier_type(class="form-control", id="supplierType", required="required") }}
+                    </div>
+                    <div class="form-group">
+                        {{ add_supplier_form.tax_id.label }}
+                        {{ add_supplier_form.tax_id(class="form-control", id="taxId", required="required") }}
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.contract_start.label }}
+                    {{ add_supplier_form.contract_start(class="form-control", id="contractStart", required="required") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.contract_file.label }}
+                    {{ add_supplier_form.contract_file(class="form-control", id="contractFile") }}
+                </div>
+                
+                <div class="form-group">
+                    {{ add_supplier_form.notes.label }}
+                    {{ add_supplier_form.notes(class="form-control", rows="2", id="supplierNotes") }}
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="closeSupplier">Cancel</button>
+            <button type="submit" form="addSupplierForm" class="btn btn-primary">Add Supplier</button>
+        </div>
+    </div>
+</div>

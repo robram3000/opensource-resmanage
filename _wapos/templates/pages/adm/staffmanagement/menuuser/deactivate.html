@@ -1,0 +1,47 @@
+<div class="deactivate-supplier">
+    <div class="modal-container">
+        <div class="modal-header">
+            <h3>Deactivate Supplier</h3>
+            <button class="close-modal" onclick="closeDeactivateModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="warning-message">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <p>Are you sure you want to deactivate this supplier? This action cannot be undone.</p>
+            </div>
+            
+            <div class="form-group">
+                <label for="deactivateReason">Reason for deactivation</label>
+                <select id="deactivateReason" class="form-control" required>
+                    <option value="">Select a reason</option>
+                    <option value="no-longer-needed">No longer needed</option>
+                    <option value="poor-quality">Poor quality</option>
+                    <option value="contract-ended">Contract ended</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group" id="otherReasonGroup" style="display: none;">
+                <label for="otherReason">Please specify</label>
+                <textarea id="otherReason" class="form-control" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <div class="form-check">
+                    <input type="checkbox" id="confirmDeactivate" class="form-check-input" required>
+                    <label class="form-check-label" for="confirmDeactivate">
+                        I confirm I want to deactivate this supplier
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="closeDeactivate">Cancel</button>
+            <button class="btn btn-danger" onclick="submitDeactivateForm()">Deactivate Supplier</button>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,6 @@
 from flask import Blueprint, render_template
+from form.admn import (AddUserForm, EditUserForm, 
+                      AddSupplierForm, EditSupplierForm)
 
 admin = Blueprint('admn', __name__, template_folder='templates')
 
@@ -11,7 +13,12 @@ def dashboard():
 
 @admin.route('/manage-user', methods=['GET', 'POST'])
 def manage_user():
-    return render_template('pages/adm/staffmanagement/manageuser.html')
+    add_user_form = AddUserForm()
+    add_supplier_form = AddSupplierForm()
+    return render_template('pages/adm/staffmanagement/manageuser.html',
+                            add_user_form = add_user_form,
+                            add_supplier_form = add_supplier_form
+                           )
 
 
 @admin.route('/activity-logs', methods=['GET', 'POST'])

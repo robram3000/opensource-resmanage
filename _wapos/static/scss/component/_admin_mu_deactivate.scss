@@ -1,0 +1,72 @@
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use '_admin_mu_btn';
+@use '_admin_mu_dropdown';
+@use 'sass:map';
+@use 'sass:color';
+
+.deactivate-supplier {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed) ease;
+    
+    &.open, &.show {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .warning-message {
+        display: flex;
+        align-items: center;
+        gap: map.get($spacers, 2);
+        padding: map.get($spacers, 2);
+        margin-bottom: map.get($spacers, 3);
+        background-color: var(--warning-color);
+        border-radius: var(--border-radius);
+        color: var(--text-color);
+        
+        .warning-icon {
+            color: --warning-color;
+            font-size: 1.5rem;
+        }
+    }
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: map.get($spacers, 1);
+        
+        &-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin: 0;
+        }
+        
+        &-label {
+            margin-bottom: 0;
+        }
+    }
+
+    .btn-danger {
+        background-color: --danger-color;
+        border-color:--danger-color;
+        color: white;
+        
+        &:hover {
+            background-color: --danger-color;
+            border-color: --danger-color;
+        }
+    }
+}

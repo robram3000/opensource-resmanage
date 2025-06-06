@@ -12,6 +12,12 @@
     
     // Any delete-specific overrides can go here
 }
+.create-supplier {
+    @extend .create-staff; // Inherits all base styles from create-staff
+    
+    // Any delete-specific overrides can go here
+}
+
 
 .delete-confirmation {
     text-align: center;
