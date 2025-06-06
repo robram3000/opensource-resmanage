@@ -1,0 +1,360 @@
+@use '../base/_admin_variables' as *;
+@use 'sass:map';
+.restaurant-sales-container {
+  padding: var(--spacer);
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  font-family: var(--font-family-sans-serif);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+
+  .report-header {
+    display: flex;
+    flex-direction: column;
+    gap: map.get($spacers, 3);
+    margin-bottom: map.get($spacers, 4);
+    padding-bottom: map.get($spacers, 3);
+    border-bottom: 1px solid var(--border-color);
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 {
+      color: var(--primary-color);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: map.get($spacers, 2);
+
+      i {
+        color: var(--accent-color);
+      }
+    }
+
+    .report-filters {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: map.get($spacers, 3);
+
+      .filter-group {
+        display: flex;
+        align-items: center;
+        gap: map.get($spacers, 2);
+        flex: 1 1 auto;
+
+        label {
+          font-weight: 600;
+          color: var(--text-secondary);
+          white-space: nowrap;
+        }
+
+        .form-select {
+          padding: map.get($spacers, 2) map.get($spacers, 3);
+          border: 1px solid var(--border-color);
+          border-radius: var(--border-radius);
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          transition: var(--transition-speed);
+          min-width: 150px;
+
+          &:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px var(--accent-light);
+          }
+        }
+      }
+
+      .btn {
+        padding: map.get($spacers, 2) map.get($spacers, 4);
+        display: flex;
+        align-items: center;
+        gap: map.get($spacers, 2);
+      }
+    }
+  }
+
+  .key-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: map.get($spacers, 3);
+    margin-bottom: map.get($spacers, 4);
+
+    .metric-card {
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      padding: map.get($spacers, 3);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: var(--transition-speed);
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+      }
+
+      .metric-value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-bottom: map.get($spacers, 1);
+      }
+
+      .metric-label {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: map.get($spacers, 1);
+      }
+
+      .metric-change {
+        font-size: 0.85rem;
+
+        &.positive {
+          color: var(--success-color);
+        }
+
+        &.negative {
+          color: var(--danger-color);
+        }
+
+        i {
+          margin-right: map.get($spacers, 1);
+        }
+      }
+    }
+  }
+
+  .sales-trends {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: map.get($spacers, 4);
+    margin-bottom: map.get($spacers, 4);
+
+    @media (min-width: 992px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .chart-container {
+      background-color: var(--bg-color);
+      border-radius: var(--border-radius);
+      padding: map.get($spacers, 3);
+      box-shadow: var(--shadow-sm);
+
+      h2 {
+        margin-top: 0;
+        margin-bottom: map.get($spacers, 3);
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        gap: map.get($spacers, 2);
+
+        i {
+          color: var(--accent-color);
+        }
+      }
+
+      .chart-placeholder {
+        height: 250px;
+        width: 100%;
+        position: relative;
+
+        canvas {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .menu-performance {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    padding: map.get($spacers, 3);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: map.get($spacers, 4);
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: map.get($spacers, 3);
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: map.get($spacers, 2);
+
+      i {
+        color: var(--accent-color);
+      }
+    }
+
+    .performance-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: map.get($spacers, 4);
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .category-sales {
+        h3 {
+          margin-top: 0;
+          margin-bottom: map.get($spacers, 2);
+          font-size: 1rem;
+          color: var(--text-secondary);
+        }
+
+        .chart-placeholder.pie {
+          height: 300px;
+        }
+      }
+
+      .top-items {
+        h3 {
+          margin-top: 0;
+          margin-bottom: map.get($spacers, 2);
+          font-size: 1rem;
+          color: var(--text-secondary);
+        }
+
+        .top-items-list {
+          .menu-item {
+            display: grid;
+            grid-template-columns: 30px 2fr 1fr 1fr;
+            gap: map.get($spacers, 2);
+            padding: map.get($spacers, 2) 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .item-rank {
+              font-weight: 700;
+              color: var(--accent-color);
+              text-align: center;
+            }
+
+            .item-name {
+              font-weight: 600;
+            }
+
+            .item-sales {
+              font-weight: 600;
+              color: var(--success-color);
+              text-align: right;
+            }
+
+            .item-qty {
+              color: var(--text-secondary);
+              font-size: 0.85rem;
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .server-performance {
+    background-color: var(--bg-color);
+    border-radius: var(--border-radius);
+    padding: map.get($spacers, 3);
+    box-shadow: var(--shadow-sm);
+
+    h2 {
+      margin-top: 0;
+      margin-bottom: map.get($spacers, 3);
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      gap: map.get($spacers, 2);
+
+      i {
+        color: var(--accent-color);
+      }
+    }
+
+    .server-table {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+
+      .server-header {
+        background-color: var(--surface-secondary);
+        font-weight: 600;
+        color: var(--text-secondary);
+        padding: map.get($spacers, 2) map.get($spacers, 3);
+        display: contents;
+
+        & > div {
+          padding: map.get($spacers, 2) map.get($spacers, 3);
+          background-color: var(--surface-secondary);
+        }
+      }
+
+      .server-row {
+        display: contents;
+
+        &:nth-child(even) > div {
+          background-color: var(--surface-secondary);
+        }
+
+        & > div {
+          padding: map.get($spacers, 2) map.get($spacers, 3);
+          display: flex;
+          align-items: center;
+        }
+
+        .server-name {
+          display: flex;
+          align-items: center;
+          gap: map.get($spacers, 2);
+          font-weight: 600;
+
+          .server-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+.dark-theme {
+  .restaurant-sales-container {
+    .report-header {
+      border-bottom-color: var(--border-color);
+    }
+
+    .key-metrics .metric-card,
+    .sales-trends .chart-container,
+    .menu-performance,
+    .server-performance {
+      background-color: var(--surface-color);
+    }
+
+    .server-table {
+      .server-header > div {
+        background-color: var(--dark-surface-secondary);
+      }
+
+      .server-row:nth-child(even) > div {
+        background-color: var(--dark-surface-secondary);
+      }
+    }
+  }
+}

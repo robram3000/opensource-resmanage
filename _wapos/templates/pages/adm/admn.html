@@ -76,7 +76,7 @@
                     <i class="fas fa-chevron-down dropdown-icon"></i>
                 </button>
                 <div class="dropdown-items">
-                    <a href="#" class="menu-item">Sales Report</a>
+                    <a href="{{url_for("admn.sales_report")}}" class="menu-item">Sales Report</a>
                     <a href="#" class="menu-item">Financial Summary</a>
                     <a href="#" class="menu-item">Customer Analytics</a>
                 </div>
@@ -372,8 +372,9 @@
     <script src="{{ url_for('static', filename='js/admn/dashboard.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admn/bookingcalendar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admn/_Admin_mu_actions.js') }}"></script>
-     <script src="{{ url_for('static', filename='js/admn/_Admin_Activitylogs.js') }}"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/admn/_Admin_Activitylogs.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admn/_Admin_salesreport.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
       
 </html>

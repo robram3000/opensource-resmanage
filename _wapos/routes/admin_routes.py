@@ -18,6 +18,9 @@ def manage_user():
 def activity_logs():
     return render_template('pages/adm/staffmanagement/activitylogs.html')
 
+@admin.route('/sales-report', methods=['GET', 'POST'])
+def sales_report():
+    return render_template('pages/adm/saleanalytics/salesreport.html')
 
 @admin.route('/table-manage', methods=['GET', 'POST'])
 def table_manage():
