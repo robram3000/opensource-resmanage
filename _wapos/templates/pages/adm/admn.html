@@ -65,8 +65,8 @@
                 <div class="dropdown-items">
                     <a href="{{ url_for("admn.manage_user")}}" class="menu-item">Manage Users</a>
                     <a href="#" class="menu-item">Role Permissions</a>
-                    <a href="#" class="menu-item">Activity Logs</a>
-                    <a href="#" class="menu-item">Loyalyty Card</a>
+                    <a href="{{url_for("admn.activity_logs")}}" class="menu-item">Activity Logs</a>
+                   
                 </div>
             </div>
               <div class="menu-dropdown">
@@ -368,9 +368,12 @@
     
     <script src="{{ url_for('static', filename='js/admn/sidebar.js') }}"></script>
     <script src="{{ url_for('static', filename='js/admn/usermenu.js') }}"></script>
-     <script src="{{ url_for('static', filename='js/admn/tablemanagement.js') }}"></script>
-       <script src="{{ url_for('static', filename='js/admn/dashboard.js') }}"></script>
-          <script src="{{ url_for('static', filename='js/admn/bookingcalendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admn/tablemanagement.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admn/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admn/bookingcalendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/admn/_Admin_mu_actions.js') }}"></script>
+     <script src="{{ url_for('static', filename='js/admn/_Admin_Activitylogs.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
+
+      
 </html>

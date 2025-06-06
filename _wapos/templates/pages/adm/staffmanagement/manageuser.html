@@ -32,6 +32,9 @@
         </div>
     </div>
 
+    <!-- Row Actions Bar (Initially Hidden) -->
+    
+
     <!-- Advanced Action Bar -->
     <div class="action-bar">
         <!-- Left Side Actions -->
@@ -107,6 +110,31 @@
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row-selection-panel" style="display: none;">
+        <div class="selected-info">
+            <span class="selected-count">1</span> user selected
+        </div>
+        <div class="action-buttons">
+            <button class="action-btn view">
+                <i class="fas fa-eye"></i> View
+            </button>
+            <button class="action-btn edit">
+                <i class="fas fa-edit"></i> Edit
+            </button>
+            <button class="action-btn message">
+                <i class="fas fa-envelope"></i> Message
+            </button>
+            <button class="action-btn deactivate">
+                <i class="fas fa-user-slash"></i> Deactivate
+            </button>
+            <button class="action-btn delete">
+                <i class="fas fa-trash-alt"></i> Delete
+            </button>
+            <button class="action-btn cancel">
+                <i class="fas fa-times"></i> Cancel
+            </button>
         </div>
     </div>
 
@@ -190,11 +218,10 @@
                                 <span>Registered</span>
                                 <i class="fas fa-sort"></i>
                             </th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="user-active">
+                        <tr class="user-active" data-user-id="45">
                             <td><input type="checkbox" class="user-checkbox"></td>
                             <td>45</td>
                             <td>
@@ -221,31 +248,34 @@
                             </td>
                             <td>2 hours ago</td>
                             <td>Jan 15, 2023</td>
-                            <td class="actions-cell">
-                                <div class="dropdown actions-dropdown">
-                                    <button class="actions-toggle">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <button class="action-btn view">
-                                            <i class="fas fa-eye"></i> View Profile
-                                        </button>
-                                        <button class="action-btn edit">
-                                            <i class="fas fa-edit"></i> Edit
-                                        </button>
-                                        <button class="action-btn message">
-                                            <i class="fas fa-envelope"></i> Send Message
-                                        </button>
-                                        <div class="dropdown-divider"></div>
-                                        <button class="action-btn deactivate">
-                                            <i class="fas fa-user-slash"></i> Deactivate
-                                        </button>
-                                        <button class="action-btn delete">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </button>
+                        </tr>
+                          <tr class="user-active" data-user-id="45">
+                            <td><input type="checkbox" class="user-checkbox"></td>
+                            <td>45</td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="details">
+                                        <strong>Roberto V. Ramirez jr.</strong>
+                                        <small>@sarahj</small>
                                     </div>
                                 </div>
                             </td>
+                            <td>
+                                <div class="user-info">
+                                    <div class="avatar">
+                                        <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-1/503399914_2816253461894137_375945493000544299_n.jpg?stp=c0.0.694.694a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeHaFad91jyDG2NLlrTCMu1DHsXKrN1CAmQexcqs3UICZIzJYIzeYQSuoPxFCadGE-Q7v6BSnsTWo9o1e4lIhZra&_nc_ohc=-QTp043ReOEQ7kNvwH0zXrb&_nc_oc=AdkcnsTrzyO5nAy4rWKJU9xNsZA0pE2AjJHa-K6FHAnyrYFQ2qvQKpTqEmWarzt6grQ&_nc_zt=24&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=e6rIppp7B8vaE0gVLC3QxQ&oh=00_AfOQ6FWQky2dFGgCc_Y8xxStMn5tD4DdrktDHbPluoHoJw&oe=6846C5AF" alt="User Avatar">
+                                    </div>
+                                </div>
+                            </td>
+                            <td>robram3000@gmail.com</td>
+                            <td><span class="role-badge admin">Administrator</span></td>
+                            <td>
+                                <span class="status-badge active">
+                                    <i class="fas fa-circle"></i> Active
+                                </span>
+                            </td>
+                            <td>2 hours ago</td>
+                            <td>Jan 15, 2023</td>
                         </tr>
                     </tbody>
                 </table>
@@ -329,33 +359,43 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="dropdown actions-dropdown">
-                            <button class="actions-toggle">
-                                <i class="fas fa-ellipsis-v"></i> Actions
-                            </button>
-                            <div class="dropdown-menu">
-                                <button class="action-btn view">
-                                    <i class="fas fa-eye"></i> View Profile
-                                </button>
-                                <button class="action-btn edit">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <button class="action-btn message">
-                                    <i class="fas fa-envelope"></i> Send Message
-                                </button>
-                                <div class="dropdown-divider"></div>
-                                <button class="action-btn deactivate">
-                                    <i class="fas fa-user-slash"></i> Deactivate
-                                </button>
-                                <button class="action-btn delete">
-                                    <i class="fas fa-trash-alt"></i> Delete
-                                </button>
+                </div>
+                <div class="user-card">
+                    <div class="card-header">
+                        <input type="checkbox" class="user-checkbox">
+                        <div class="avatar">
+                            <img src="https://scontent.fmnl17-2.fna.fbcdn.net/v/t39.30808-1/503399914_2816253461894137_375945493000544299_n.jpg?stp=c0.0.694.694a_dst-jpg_s160x160_tt6&_nc_cat=111&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeHaFad91jyDG2NLlrTCMu1DHsXKrN1CAmQexcqs3UICZIzJYIzeYQSuoPxFCadGE-Q7v6BSnsTWo9o1e4lIhZra&_nc_ohc=-QTp043ReOEQ7kNvwH0zXrb&_nc_oc=AdkcnsTrzyO5nAy4rWKJU9xNsZA0pE2AjJHa-K6FHAnyrYFQ2qvQKpTqEmWarzt6grQ&_nc_zt=24&_nc_ht=scontent.fmnl17-2.fna&_nc_gid=e6rIppp7B8vaE0gVLC3QxQ&oh=00_AfOQ6FWQky2dFGgCc_Y8xxStMn5tD4DdrktDHbPluoHoJw&oe=6846C5AF" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <h4>Roberto V. Ramirez jr.</h4>
+                            <p class="email">robram3000@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="user-meta">
+                            <div class="meta-item">
+                                <span class="label">Role:</span>
+                                <span class="role-badge admin">Administrator</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Status:</span>
+                                <span class="status-badge active">
+                                    <i class="fas fa-circle"></i> Active
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Last Active:</span>
+                                <span>2 hours ago</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Registered:</span>
+                                <span>Jan 15, 2023</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Grid View Pagination -->
             <div class="table-footer">
@@ -399,6 +439,8 @@
 
      {% include "pages/adm/staffmanagement/menuuser/quickview.html" %}
      {% include "pages/adm/staffmanagement/menuuser/create.html" %}
+      {% include "pages/adm/staffmanagement/menuuser/delete.html" %}
 </div>
+
 {% endblock %}
 

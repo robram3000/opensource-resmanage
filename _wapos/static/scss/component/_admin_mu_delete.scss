@@ -1,0 +1,84 @@
+
+@use '../base/_admin_variables' as *;
+@use '../base/_mixin' as *;
+@use '../base/_admin_typography' as *;
+@use '_admin_mu_btn';
+@use '_admin_mu_dropdown';
+@use 'sass:map';
+@use 'sass:color';
+@use "_admin_mu_create";
+.delete-staff {
+    @extend .create-staff; // Inherits all base styles from create-staff
+    
+    // Any delete-specific overrides can go here
+}
+
+.delete-confirmation {
+    text-align: center;
+    padding: map.get($spacers, 3);
+    
+    .warning-icon {
+        font-size: 3rem;
+        color: var(--warning-color);
+        margin-bottom: map.get($spacers, 3);
+    }
+    
+    p {
+        color: var(--text-secondary);
+        margin-bottom: map.get($spacers, 3);
+    }
+    
+    .user-to-delete {
+        background: var(--bg-color);
+        padding: map.get($spacers, 2);
+        border-radius: var(--border-radius);
+        margin: map.get($spacers, 3) 0;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: map.get($spacers, 2);
+        
+        i {
+            color: var(--text-secondary);
+        }
+    }
+    
+    .confirmation-input {
+        margin-top: map.get($spacers, 3);
+        
+        label {
+            display: block;
+            margin-bottom: map.get($spacers, 1);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        input {
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+    }
+}
+
+// Button overrides for delete modal
+.modal-footer {
+    .btn-danger {
+        background-color: var(--danger-color, #dc3545); // Fallback color
+        border-color: var(--danger-color, #dc3545);
+        color: white;
+        
+        &:hover, &:focus {
+            background-color: var(--danger-color-dark, #c82333);
+            border-color: var(--danger-color-dark, #bd2130);
+        }
+        
+        &:disabled {
+            background-color: var(--danger-color-light, #e4606d);
+            border-color: var(--danger-color-light, #e4606d);
+            opacity: 0.7;
+        }
+    }
+}

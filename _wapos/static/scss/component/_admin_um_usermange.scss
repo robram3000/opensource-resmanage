@@ -7,9 +7,11 @@
 @use 'sass:color';
 
 .user-management-container {
-  padding: map.get($spacers, 4);
-  max-width: 1600px;
+  padding: map.get($spacers, 3) map.get($spacers, 2);
+  max-width: 100%;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .management-header {
@@ -374,17 +376,7 @@
   .search-actions {
     display: flex;
     gap: map.get($spacers, 2);
-    .search-btn.cancel {
-    @extend .btn;
-    background: none;
-    border: none;
-    color: var(--text-secondary);
     
-    &:hover {
-      color: var(--text-color);
-      text-decoration: underline;
-    }
-  }
     .search-btn {
       @extend .btn;
       
@@ -412,6 +404,8 @@
 }
 
 .table-container {
+  position: relative;
+  z-index: 1;
   @include card-style;
   overflow-x: auto;
   margin-bottom: map.get($spacers, 4);
@@ -573,12 +567,23 @@
       }
     }
     
-    tr {
-      @include transition;
-      
-      &:hover {
-        background-color: var(--bg-color);
-      }
+      tr {
+        cursor: pointer;
+        
+        &.selected {
+            background-color: rgba(var(--accent-color-rgb), 0.1) !important;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background-color: var(--accent-color);
+            }
+        }
     }
   }
 }
@@ -975,11 +980,17 @@
       padding: map.get($spacers, 2) map.get($spacers, 3);
       border-top: 1px solid var(--border-color);
       display: flex;
+      
       justify-content: center;
       
       .actions-dropdown {
-        width: 100%;
-        
+
+         position: fixed;
+        z-index: 9999;
+        /* Optional: add max-height and overflow-y if needed */
+        max-height: 300px;
+        overflow-y: auto;
+                
         .actions-toggle {
           @extend .btn;
           @extend .btn-outline;
@@ -999,64 +1010,84 @@
     }
   }
 }
-.actions-dropdown {
-  position: relative;
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    z-index: 1000;
-    min-width: 200px;
-    padding: map.get($spacers, 1) 0;
-    margin-top: map.get($spacers, 1);
-    background-color: var(--surface-color);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-md);
-    
-    &.show {
-      display: block;
-    }
-  }
-  
-  .action-btn {
+.row-selection-panel {
+    @include card-style;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: map.get($spacers, 2);
-    width: 100%;
-    padding: map.get($spacers, 1) map.get($spacers, 2);
-    background: none;
-    border: none;
-    text-align: left;
-    color: var(--text-color);
-    cursor: pointer;
-    @include transition;
+    padding: map.get($spacers, 2) map.get($spacers, 3);
+    margin-bottom: map.get($spacers, 3);
+    background-color: var(--surface-color);
+    border-left: 4px solid var(--accent-color);
+    animation: fadeIn 0.2s ease-out;
     
-    &:hover {
-      background-color: var(--bg-color);
-      color: var(--accent-color);
+    .selected-info {
+        font-size: 0.9rem;
+        color: var(--text-color);
+        
+        .selected-count {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
     }
     
-    i {
-      width: 1rem;
-      text-align: center;
+    .action-buttons {
+        display: flex;
+        gap: map.get($spacers, 2);
+        
+        .action-btn {
+            @extend .btn;
+            @extend .btn-outline;
+            display: flex;
+            align-items: center;
+            gap: map.get($spacers, 1);
+            padding: map.get($spacers, 1) map.get($spacers, 2);
+            font-size: 0.85rem;
+            
+            i {
+                font-size: 0.8rem;
+            }
+            
+            &.view {
+                &:hover {
+                    color: var(--info-color);
+                    border-color: var(--info-color);
+                }
+            }
+            
+            &.edit {
+                &:hover {
+                    color: var(--warning-color);
+                    border-color: var(--warning-color);
+                }
+            }
+            
+            &.deactivate {
+                &:hover {
+                    color: var(--danger-color);
+                    border-color: var(--danger-color);
+                }
+            }
+            
+            &.cancel {
+                &:hover {
+                    color: var(--text-secondary);
+                    border-color: var(--border-color);
+                }
+            }
+        }
     }
-    
-    &.delete {
-      color: #dc3545;
-      
-      &:hover {
-        background-color: rgba(#dc3545, 0.1);
-      }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
-  }
-  
-  .dropdown-divider {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: map.get($spacers, 1) 0;
-  }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 // Responsive adjustments
 @media (max-width: 1200px) {

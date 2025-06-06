@@ -1,0 +1,484 @@
+{% extends "pages/adm/admn.html" %}
+{% block content %}
+<div class="menu-management-container">
+    <div class="management-header">
+        <h2 class="management-title">
+            <i class="fas fa-utensils"></i> Menu Management
+            <span class="badge total-items">Total: 86</span>
+        </h2>
+        <div class="quick-stats">
+            <div class="stat-card popular">
+                <i class="fas fa-fire"></i>
+                <div>
+                    <span class="stat-value">15</span>
+                    <span class="stat-label">Popular</span>
+                </div>
+            </div>
+            <div class="stat-card seasonal">
+                <i class="fas fa-leaf"></i>
+                <div>
+                    <span class="stat-value">8</span>
+                    <span class="stat-label">Seasonal</span>
+                </div>
+            </div>
+            <div class="stat-card inactive">
+                <i class="fas fa-moon"></i>
+                <div>
+                    <span class="stat-value">12</span>
+                    <span class="stat-label">Inactive</span>
+                </div>
+            </div>
+            <div class="stat-card low-stock">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <span class="stat-value">5</span>
+                    <span class="stat-label">Low Stock</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Action Bar -->
+    <div class="action-bar">
+        <!-- Left Side Actions -->
+        <div class="action-group">
+            <div class="search-container with-advanced">
+                <i class="search-icon fas fa-search"></i>
+                <input type="text" placeholder="Search menu items..." class="search-input">
+                <button class="advanced-search-toggle" title="Advanced Search">
+                    <i class="fas fa-sliders-h"></i>
+                </button>
+            </div>
+            
+            <div class="bulk-actions">
+                <select class="bulk-select">
+                    <option value="">Bulk Actions</option>
+                    <option value="activate">Activate</option>
+                    <option value="deactivate">Deactivate</option>
+                    <option value="feature">Feature</option>
+                    <option value="export">Export Selected</option>
+                </select>
+                <button class="apply-bulk" disabled>Apply</button>
+            </div>
+        </div>
+
+        <!-- Right Side Actions -->
+        <div class="action-group">
+            <div class="view-controls">
+                <button class="view-btn grid-view" title="Grid View">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="view-btn list-view active" title="List View">
+                    <i class="fas fa-list"></i>
+                </button>
+                <button class="view-btn refresh" title="Refresh">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+            
+            <div class="export-container dropdown">
+                <button class="export-btn dropdown-toggle">
+                    <i class="fas fa-file-export"></i>
+                    <span>Export</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="export-option excel">
+                        <i class="fas fa-file-excel"></i> Excel
+                    </button>
+                    <button class="export-option pdf">
+                        <i class="fas fa-file-pdf"></i> PDF
+                    </button>
+                    <button class="export-option csv">
+                        <i class="fas fa-file-csv"></i> CSV
+                    </button>
+                    <button class="export-option print">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+            
+            <div class="add-item-container dropdown">
+                <button class="add-button dropdown-toggle">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Menu Item</span>
+                    <i class="fas fa-caret-down"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <button class="add-option" data-modal="add-menu-item">
+                        <i class="fas fa-utensils"></i> Single Item
+                    </button>
+                    <button class="add-option" data-modal="bulk-upload">
+                        <i class="fas fa-file-import"></i> Bulk Upload
+                    </button>
+                    <button class="add-option" data-modal="quick-add">
+                        <i class="fas fa-bolt"></i> Quick Add
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Search Panel (Collapsible) -->
+    <div class="advanced-search-panel">
+        <div class="search-fields">
+            <div class="form-group">
+                <label>Category</label>
+                <select class="form-control" multiple>
+                    <option value="appetizers">Appetizers</option>
+                    <option value="mains">Main Courses</option>
+                    <option value="desserts">Desserts</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="specials">Specials</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Menu Status</label>
+                <select class="form-control" multiple>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="featured">Featured</option>
+                    <option value="seasonal">Seasonal</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Price Range</label>
+                <div class="price-range">
+                    <input type="number" class="form-control" placeholder="Min">
+                    <span>to</span>
+                    <input type="number" class="form-control" placeholder="Max">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Dietary Options</label>
+                <select class="form-control" multiple>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="vegan">Vegan</option>
+                    <option value="gluten-free">Gluten Free</option>
+                    <option value="halal">Halal</option>
+                    <option value="kosher">Kosher</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Preparation Time</label>
+                <select class="form-control" multiple>
+                    <option value="fast">Fast (Under 15 min)</option>
+                    <option value="medium">Medium (15-30 min)</option>
+                    <option value="slow">Slow (Over 30 min)</option>
+                </select>
+            </div>
+        </div>
+        <div class="search-actions">
+            <button class="search-btn primary">Search</button>
+            <button class="search-btn secondary">Reset</button>
+            <button class="search-btn cancel">Cancel</button>
+            <button class="search-btn link">Save Search</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="content-area">
+        <!-- List View (Default) -->
+        <div class="list-view-container">
+            <!-- Menu Items Table -->
+            <div class="table-container with-checkboxes">
+                <table class="menu-items-table">
+                    <thead>
+                        <tr>
+                            <th width="40px">
+                                <input type="checkbox" class="select-all">
+                            </th>
+                            <th class="sortable">
+                                <span>ID</span>
+                                <i class="fas fa-sort"></i>
+                            </th>
+                            <th class="sortable active asc">
+                                <span>Menu Item</span>
+                                <i class="fas fa-sort-up"></i>
+                            </th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Cost</th>
+                            <th>Status</th>
+                            <th>Prep Time</th>
+                            <th>Popularity</th>
+                            <th>Last Modified</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="menu-item-featured">
+                            <td><input type="checkbox" class="menu-item-checkbox"></td>
+                            <td>MENU-045</td>
+                            <td>
+                                <div class="menu-item-info">
+                                    <img src="/static/images/menu/steak.jpg" alt="Steak" class="menu-item-thumb">
+                                    <div class="details">
+                                        <strong>Grilled Ribeye Steak</strong>
+                                        <small>With roasted vegetables and mashed potatoes</small>
+                                        <div class="dietary-tags">
+                                            <span class="tag gluten-free">GF</span>
+                                            <span class="tag dairy-free">DF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Main Course</td>
+                            <td>$32.99</td>
+                            <td>$12.45</td>
+                            <td>
+                                <span class="status-badge featured">
+                                    <i class="fas fa-star"></i> Featured
+                                </span>
+                            </td>
+                            <td>
+                                <span class="prep-time-badge">
+                                    <i class="fas fa-clock"></i> 25 min
+                                </span>
+                            </td>
+                            <td>
+                                <div class="popularity-meter">
+                                    <div class="meter-bar high" style="width: 85%"></div>
+                                    <span>85%</span>
+                                </div>
+                            </td>
+                            <td>3 days ago</td>
+                            <td class="actions-cell">
+                                <div class="dropdown actions-dropdown">
+                                    <button class="actions-toggle">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <button class="action-btn view" data-modal="view-details">
+                                            <i class="fas fa-eye"></i> View Details
+                                        </button>
+                                        <button class="action-btn edit" data-modal="edit-menu-item">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                        <button class="action-btn pricing" data-modal="adjust-pricing">
+                                            <i class="fas fa-tag"></i> Adjust Pricing
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="action-btn feature" data-modal="feature-item">
+                                            <i class="fas fa-star"></i> Feature
+                                        </button>
+                                        <button class="action-btn ingredients" data-modal="manage-ingredients">
+                                            <i class="fas fa-list"></i> Manage Ingredients
+                                        </button>
+                                        <div class="dropdown-divider"></div>
+                                        <button class="action-btn delete">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="menu-item-active">
+                            <td><input type="checkbox" class="menu-item-checkbox"></td>
+                            <td>MENU-102</td>
+                            <td>
+                                <div class="menu-item-info">
+                                    <img src="/static/images/menu/salad.jpg" alt="Salad" class="menu-item-thumb">
+                                    <div class="details">
+                                        <strong>Seasonal Garden Salad</strong>
+                                        <small>With house vinaigrette dressing</small>
+                                        <div class="dietary-tags">
+                                            <span class="tag vegetarian">V</span>
+                                            <span class="tag vegan">VG</span>
+                                            <span class="tag gluten-free">GF</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Appetizer</td>
+                            <td>$12.99</td>
+                            <td>$4.25</td>
+                            <td>
+                                <span class="status-badge active">
+                                    <i class="fas fa-check-circle"></i> Active
+                                </span>
+                            </td>
+                            <td>
+                                <span class="prep-time-badge">
+                                    <i class="fas fa-clock"></i> 10 min
+                                </span>
+                            </td>
+                            <td>
+                                <div class="popularity-meter">
+                                    <div class="meter-bar medium" style="width: 65%"></div>
+                                    <span>65%</span>
+                                </div>
+                            </td>
+                            <td>1 week ago</td>
+                            <td class="actions-cell">
+                                <!-- Similar action dropdown as above -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Table Footer -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Rows per page:</span>
+                        <select class="form-control">
+                            <option>10</option>
+                            <option selected>25</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select>
+                    </div>
+                    <div class="selected-count">
+                        <span>0</span> of <span>86</span> selected
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-25 of 86 menu items</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <button class="page-number">4</button>
+                        </div>
+                        
+                        <button class="pagination-btn next">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid View (Hidden by default) -->
+        <div class="grid-view-container" style="display: none;">
+            <div class="menu-item-grid">
+                <div class="menu-item-card featured">
+                    <div class="card-header">
+                        <input type="checkbox" class="menu-item-checkbox">
+                        <div class="status-indicator featured"></div>
+                        <div class="menu-item-image">
+                            <img src="/static/images/menu/steak.jpg" alt="Steak">
+                        </div>
+                        <div class="menu-item-info">
+                            <h4>Grilled Ribeye Steak</h4>
+                            <p class="description">With roasted vegetables and mashed potatoes</p>
+                            <div class="dietary-tags">
+                                <span class="tag gluten-free">GF</span>
+                                <span class="tag dairy-free">DF</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="price-section">
+                            <span class="price">$32.99</span>
+                            <span class="cost">Cost: $12.45</span>
+                        </div>
+                        <div class="menu-item-meta">
+                            <div class="meta-item">
+                                <span class="label">Category:</span>
+                                <span>Main Course</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Prep Time:</span>
+                                <span class="prep-time-badge">
+                                    <i class="fas fa-clock"></i> 25 min
+                                </span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="label">Popularity:</span>
+                                <div class="popularity-meter">
+                                    <div class="meter-bar high" style="width: 85%"></div>
+                                    <span>85%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="dropdown actions-dropdown">
+                            <button class="actions-toggle">
+                                <i class="fas fa-ellipsis-v"></i> Actions
+                            </button>
+                            <div class="dropdown-menu">
+                                <button class="action-btn view" data-modal="view-details">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                                <button class="action-btn edit" data-modal="edit-menu-item">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="action-btn pricing" data-modal="adjust-pricing">
+                                    <i class="fas fa-tag"></i> Pricing
+                                </button>
+                                <div class="dropdown-divider"></div>
+                                <button class="action-btn feature" data-modal="feature-item">
+                                    <i class="fas fa-star"></i> Feature
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional menu item cards would go here -->
+            </div>
+
+            <!-- Grid View Pagination -->
+            <div class="table-footer">
+                <div class="footer-left">
+                    <div class="rows-per-page">
+                        <span>Cards per page:</span>
+                        <select class="form-control">
+                            <option>12</option>
+                            <option selected>24</option>
+                            <option>48</option>
+                            <option>96</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="pagination-container">
+                    <div class="pagination-info">Showing 1-24 of 86 menu items</div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn first" disabled>
+                            <i class="fas fa-angle-double-left"></i>
+                        </button>
+                        <button class="pagination-btn prev" disabled>
+                            <i class="fas fa-angle-left"></i>
+                        </button>
+                        
+                        <div class="page-numbers">
+                            <button class="page-number active">1</button>
+                            <button class="page-number">2</button>
+                            <button class="page-number">3</button>
+                            <button class="page-number">4</button>
+                        </div>
+                        
+                        <button class="pagination-btn next">
+                            <i class="fas fa-angle-right"></i>
+                        </button>
+                        <button class="pagination-btn last">
+                            <i class="fas fa-angle-double-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -32,7 +32,9 @@
 @use 'base/_admin_typography.scss';
 @use 'base/_mixin.scss';
 @use 'component/_admin_tm_bookingcalendar.scss';
-
+@use 'component/_admin_mu_delete.scss';
+@use'component/_admin_mm_menu.scss';
+@use 'component/_admin_mu_activitylogs.scss';
 
 .main-container {
   min-height: 100vh;

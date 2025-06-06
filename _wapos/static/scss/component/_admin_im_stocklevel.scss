@@ -7,9 +7,11 @@
 @use 'sass:color';
 
 .ingredient-management-container {
-  padding: map.get($spacers, 4);
-  max-width: 1600px;
+  padding: map.get($spacers, 3) map.get($spacers, 2);
+  max-width: 100%;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .management-header {

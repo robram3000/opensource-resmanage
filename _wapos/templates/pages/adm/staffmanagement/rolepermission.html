@@ -1,0 +1,255 @@
+{%extends ""%}
+{%block content%}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Activity Logs</h5>
+        <div class="d-flex">
+            <button class="btn btn-sm btn-outline-primary me-2" id="refreshLogs">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#filterModal">
+                <i class="fas fa-filter"></i> Filters
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <!-- Search and Quick Filters -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" class="form-control" id="logSearch" placeholder="Search logs...">
+                    <button class="btn btn-outline-secondary" type="button" id="clearSearch">Clear</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="d-flex justify-content-end">
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="logPeriod" id="periodToday" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="periodToday">Today</label>
+                        
+                        <input type="radio" class="btn-check" name="logPeriod" id="periodWeek" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="periodWeek">This Week</label>
+                        
+                        <input type="radio" class="btn-check" name="logPeriod" id="periodMonth" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="periodMonth">This Month</label>
+                        
+                        <input type="radio" class="btn-check" name="logPeriod" id="periodAll" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="periodAll">All</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Table -->
+        <div class="table-responsive">
+            <table class="table table-hover" id="logsTable">
+                <thead>
+                    <tr>
+                        <th width="150">Timestamp</th>
+                        <th width="120">User</th>
+                        <th>Action</th>
+                        <th width="150">Module</th>
+                        <th width="120">Status</th>
+                        <th width="80">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-06-15 09:30:45</td>
+                        <td>admin</td>
+                        <td>User created</td>
+                        <td>User Management</td>
+                        <td><span class="badge bg-success">Success</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>2023-06-15 10:15:22</td>
+                        <td>johndoe</td>
+                        <td>Password changed</td>
+                        <td>Authentication</td>
+                        <td><span class="badge bg-success">Success</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>2023-06-15 11:05:18</td>
+                        <td>admin</td>
+                        <td>Permission updated</td>
+                        <td>Role Management</td>
+                        <td><span class="badge bg-warning text-dark">Warning</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>2023-06-15 14:30:33</td>
+                        <td>system</td>
+                        <td>Database backup</td>
+                        <td>System</td>
+                        <td><span class="badge bg-success">Success</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                    </tr>
+                    <tr>
+                        <td>2023-06-15 16:45:12</td>
+                        <td>janedoe</td>
+                        <td>Failed login attempt</td>
+                        <td>Authentication</td>
+                        <td><span class="badge bg-danger">Failed</span></td>
+                        <td><button class="btn btn-sm btn-outline-primary">View</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <nav aria-label="Logs pagination">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filter Logs</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="logFilterForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="dateRange" class="form-label">Date Range</label>
+                                <div class="input-daterange input-group" id="dateRange">
+                                    <input type="date" class="form-control" name="startDate">
+                                    <span class="input-group-text">to</span>
+                                    <input type="date" class="form-control" name="endDate">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="userFilter" class="form-label">User</label>
+                                <select class="form-select" id="userFilter" name="userFilter" multiple>
+                                    <option value="admin">admin</option>
+                                    <option value="johndoe">johndoe</option>
+                                    <option value="janedoe">janedoe</option>
+                                    <option value="system">system</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="moduleFilter" class="form-label">Module</label>
+                                <select class="form-select" id="moduleFilter" name="moduleFilter" multiple>
+                                    <option value="User Management">User Management</option>
+                                    <option value="Role Management">Role Management</option>
+                                    <option value="Authentication">Authentication</option>
+                                    <option value="System">System</option>
+                                    <option value="Settings">Settings</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="success" id="statusSuccess" checked>
+                                    <label class="form-check-label" for="statusSuccess">
+                                        <span class="badge bg-success">Success</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="warning" id="statusWarning" checked>
+                                    <label class="form-check-label" for="statusWarning">
+                                        <span class="badge bg-warning text-dark">Warning</span>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="failed" id="statusFailed" checked>
+                                    <label class="form-check-label" for="statusFailed">
+                                        <span class="badge bg-danger">Failed</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="applyFilters">Apply Filters</button>
+                <button type="button" class="btn btn-outline-danger" id="resetFilters">Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Log Details Modal -->
+<div class="modal fade" id="logDetailsModal" tabindex="-1" aria-labelledby="logDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logDetailsModalLabel">Log Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Timestamp:</label>
+                            <p id="detailTimestamp">2023-06-15 09:30:45</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">User:</label>
+                            <p id="detailUser">admin</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">IP Address:</label>
+                            <p id="detailIp">192.168.1.100</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Module:</label>
+                            <p id="detailModule">User Management</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Action:</label>
+                            <p id="detailAction">User created</p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Status:</label>
+                            <p><span class="badge bg-success" id="detailStatus">Success</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Details:</label>
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <pre id="detailData" class="mb-0">{
+    "userId": 42,
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "roles": ["user"]
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

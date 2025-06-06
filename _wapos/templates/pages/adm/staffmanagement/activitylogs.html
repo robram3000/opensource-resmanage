@@ -1,6 +1,370 @@
-{% extends "pages/adm/admn.html"%}
+{% extends "pages/adm/admn.html" %}
 
 {% block content%}
-
+<div class="activity-gantt-container">
+  <div class="activity-gantt-controls">
+    <div class="activity-gantt-filters">
+      <!-- Enhanced Filter Dropdown -->
+      <div class="mu-dropdown filter-dropdown">
+        <button class="mu-btn mu-btn-icon mu-btn-sm mu-btn-soft">
+          <i class="icon-filter"></i>
+          <span>Filter</span>
+          <i class="icon-chevron-down"></i>
+        </button>
+        <div class="mu-dropdown-menu filter-menu">
+          <div class="filter-header">
+            <h4>Filter Activities</h4>
+            <button class="mu-btn mu-btn-icon mu-btn-sm mu-btn-text">
+              <i class="icon-x"></i>
+            </button>
+          </div>
+          <div class="filter-body">
+            <div class="filter-group">
+              <h5>Activity Types</h5>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>All Activities</span>
+                </label>
+              </div>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>User Logins</span>
+                </label>
+              </div>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>Data Exports</span>
+                </label>
+              </div>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>System Events</span>
+                </label>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h5>Severity</h5>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>Normal</span>
+                </label>
+              </div>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>Warning</span>
+                </label>
+              </div>
+              <div class="mu-dropdown-item">
+                <label class="mu-checkbox">
+                  <input type="checkbox" checked>
+                  <span>Critical</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="filter-footer">
+            <button class="mu-btn mu-btn-sm mu-btn-text">Reset</button>
+            <button class="mu-btn mu-btn-sm mu-btn-primary">Apply</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Enhanced Time Range Dropdown -->
+      <div class="mu-dropdown time-range-dropdown">
+        <button class="mu-btn mu-btn-icon mu-btn-sm mu-btn-soft">
+          <i class="icon-calendar"></i>
+          <span>Time Range</span>
+          <i class="icon-chevron-down"></i>
+        </button>
+        <div class="mu-dropdown-menu time-range-menu">
+          <div class="time-range-header">
+            <h4>Select Time Range</h4>
+          </div>
+          <div class="time-range-body">
+            <div class="mu-dropdown-item active">
+              <i class="icon-clock"></i>
+              <span>Last 24 Hours</span>
+            </div>
+            <div class="mu-dropdown-item">
+              <i class="icon-calendar"></i>
+              <span>Last 7 Days</span>
+            </div>
+            <div class="mu-dropdown-item">
+              <i class="icon-calendar"></i>
+              <span>Last 30 Days</span>
+            </div>
+            <div class="mu-dropdown-item">
+              <i class="icon-calendar"></i>
+              <span>Current Month</span>
+            </div>
+            <div class="mu-dropdown-item">
+              <i class="icon-calendar"></i>
+              <span>Custom Range...</span>
+            </div>
+          </div>
+          <div class="time-range-footer">
+            <div class="date-picker-range">
+              <input type="date" class="mu-input mu-input-sm" placeholder="Start Date">
+              <span>to</span>
+              <input type="date" class="mu-input mu-input-sm" placeholder="End Date">
+            </div>
+            <button class="mu-btn mu-btn-sm mu-btn-primary">Apply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="activity-gantt-navigation">
+      <button class="mu-btn mu-btn-icon mu-btn-sm mu-btn-soft">
+        <i class="icon-chevron-left"></i>
+      </button>
+      <div class="activity-gantt-current-range">August 2025</div>
+      <button class="mu-btn mu-btn-icon mu-btn-sm mu-btn-soft">
+        <i class="icon-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+  
+  <div class="activity-gantt-panels">
+    <!-- Left Panel - Log Details -->
+    <div class="activity-gantt-left-panel">
+      <div class="activity-gantt-table-header">
+        <div class="activity-gantt-header-cell">Log ID</div>
+        <div class="activity-gantt-header-cell">Event</div>
+        <div class="activity-gantt-header-cell">User</div>
+        <div class="activity-gantt-header-cell">Duration</div>
+      </div>
+      <div class="activity-gantt-table-body">
+        <!-- Log items will be populated by JavaScript -->
+        <div class="activity-gantt-log-item active">
+          <div class="activity-gantt-log-cell">#45821</div>
+          <div class="activity-gantt-log-cell">User login session</div>
+          <div class="activity-gantt-log-cell">
+            <div class="user-avatar">JD</div>
+            <span>John Doe</span>
+          </div>
+          <div class="activity-gantt-log-cell duration-medium">2h 15m</div>
+        </div>
+        <div class="activity-gantt-log-item">
+          <div class="activity-gantt-log-cell">#45820</div>
+          <div class="activity-gantt-log-cell">Data export initiated</div>
+          <div class="activity-gantt-log-cell">
+            <div class="user-avatar">SM</div>
+            <span>Sarah Miller</span>
+          </div>
+          <div class="activity-gantt-log-cell duration-long">4h 30m</div>
+        </div>
+        <div class="activity-gantt-log-item">
+          <div class="activity-gantt-log-cell">#45819</div>
+          <div class="activity-gantt-log-cell">System backup</div>
+          <div class="activity-gantt-log-cell">
+            <div class="user-avatar">-</div>
+            <span>System</span>
+          </div>
+          <div class="activity-gantt-log-cell duration-short">45m</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Panel - Gantt Chart -->
+    <div class="activity-gantt-right-panel">
+      <div class="activity-gantt-header">
+        <div class="activity-gantt-month-header">
+          <div class="activity-gantt-month-title">August 2025</div>
+          <div class="activity-gantt-month-stats">
+            <div class="activity-gantt-stat stat-highlight">
+              <i class="icon-activity"></i>
+              <span>24 Events</span>
+            </div>
+            <div class="activity-gantt-stat">
+              <i class="icon-clock"></i>
+              <span>18.5 Hours</span>
+            </div>
+          </div>
+        </div>
+        <div class="activity-gantt-week-header">
+          <div class="activity-gantt-day-header">
+            <div class="activity-gantt-day-label">Mon</div>
+            <div class="activity-gantt-day-date">1</div>
+          </div>
+          <div class="activity-gantt-day-header">
+            <div class="activity-gantt-day-label">Tue</div>
+            <div class="activity-gantt-day-date">2</div>
+          </div>
+          <div class="activity-gantt-day-header">
+            <div class="activity-gantt-day-label">Wed</div>
+            <div class="activity-gantt-day-date">3</div>
+          </div>
+          <div class="activity-gantt-day-header">
+            <div class="activity-gantt-day-label">Thu</div>
+            <div class="activity-gantt-day-date">4</div>
+          </div>
+          <div class="activity-gantt-day-header weekend">
+            <div class="activity-gantt-day-label">Fri</div>
+            <div class="activity-gantt-day-date">5</div>
+          </div>
+          <div class="activity-gantt-day-header weekend">
+            <div class="activity-gantt-day-label">Sat</div>
+            <div class="activity-gantt-day-date">6</div>
+          </div>
+          <div class="activity-gantt-day-header weekend">
+            <div class="activity-gantt-day-label">Sun</div>
+            <div class="activity-gantt-day-date">7</div>
+          </div>
+        </div>
+      </div>
+      <div class="activity-gantt-rows">
+        <!-- Grid lines for time markers -->
+        <div class="activity-gantt-grid">
+          <!-- Vertical lines (days) -->
+          <div class="activity-gantt-grid-vertical" style="left: 0%;"></div>
+          <div class="activity-gantt-grid-vertical" style="left: 14.2857%;"></div>
+          <div class="activity-gantt-grid-vertical" style="left: 28.5714%;"></div>
+          <div class="activity-gantt-grid-vertical" style="left: 42.8571%;"></div>
+          <div class="activity-gantt-grid-vertical weekend-line" style="left: 57.1428%;"></div>
+          <div class="activity-gantt-grid-vertical weekend-line" style="left: 71.4285%;"></div>
+          <div class="activity-gantt-grid-vertical weekend-line" style="left: 85.7142%;"></div>
+          <div class="activity-gantt-grid-vertical" style="left: 100%;"></div>
+          
+          <!-- Horizontal lines (rows) -->
+          <div class="activity-gantt-grid-horizontal" style="top: 60px;"></div>
+          <div class="activity-gantt-grid-horizontal" style="top: 120px;"></div>
+          <div class="activity-gantt-grid-horizontal" style="top: 180px;"></div>
+        </div>
+        
+        <!-- Gantt rows -->
+        <div class="activity-gantt-row active">
+          <div class="activity-gantt-row-label">User login session</div>
+          <div class="activity-gantt-bar-container">
+            <div class="activity-gantt-bar" style="left: 15%; width: 12%;">
+              <div class="activity-gantt-bar-info">
+                <strong>User login session</strong>
+                <div class="info-meta">
+                  <span>John Doe</span>
+                  <span>#45821</span>
+                </div>
+                <div class="info-meta">
+                  <span>Aug 2, 9:30 AM</span>
+                  <span>Aug 2, 11:45 AM</span>
+                </div>
+                <div class="info-duration">2h 15m</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-gantt-row">
+          <div class="activity-gantt-row-label">Data export initiated</div>
+          <div class="activity-gantt-bar-container">
+            <div class="activity-gantt-bar bar-type-admin" style="left: 25%; width: 22%;">
+              <div class="activity-gantt-bar-info">
+                <strong>Data export initiated</strong>
+                <div class="info-meta">
+                  <span>Sarah Miller</span>
+                  <span>#45820</span>
+                </div>
+                <div class="info-meta">
+                  <span>Aug 3, 2:15 PM</span>
+                  <span>Aug 3, 6:45 PM</span>
+                </div>
+                <div class="info-duration">4h 30m</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="activity-gantt-row">
+          <div class="activity-gantt-row-label">System backup</div>
+          <div class="activity-gantt-bar-container">
+            <div class="activity-gantt-bar bar-type-system bar-pulse" style="left: 60%; width: 4%;">
+              <div class="activity-gantt-bar-info">
+                <strong>System backup</strong>
+                <div class="info-meta">
+                  <span>System</span>
+                  <span>#45819</span>
+                </div>
+                <div class="info-meta">
+                  <span>Aug 5, 1:00 AM</span>
+                  <span>Aug 5, 1:45 AM</span>
+                </div>
+                <div class="info-duration">45m</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Current time indicator -->
+        <div class="activity-gantt-current-time" style="left: 35%;"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="activity-gantt-footer">
+    <div class="activity-gantt-legend">
+      <div class="legend-group">
+        <span class="group-title">Activity Types:</span>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--accent-color);"></div>
+          <span>User Actions</span>
+        </div>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--success-color);"></div>
+          <span>System Events</span>
+        </div>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--warning-color);"></div>
+          <span>Admin Activities</span>
+        </div>
+      </div>
+      <div class="legend-group">
+        <span class="group-title">Duration:</span>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--warning-color);"></div>
+          <span>&lt; 1h</span>
+        </div>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--accent-color);"></div>
+          <span>1-3h</span>
+        </div>
+        <div class="activity-gantt-legend-item">
+          <div class="activity-gantt-legend-color" style="background-color: var(--success-color);"></div>
+          <span>&gt; 3h</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Enhanced Export Button with Dropdown -->
+    <div class="mu-dropdown export-dropdown">
+      <button class="mu-btn mu-btn-sm mu-btn-primary">
+        <i class="icon-download"></i>
+        <span>Export Report</span>
+        <i class="icon-chevron-down"></i>
+      </button>
+      <div class="mu-dropdown-menu export-menu">
+        <div class="mu-dropdown-item">
+          <i class="icon-file-text"></i>
+          <span>CSV Format</span>
+        </div>
+        <div class="mu-dropdown-item">
+          <i class="icon-file"></i>
+          <span>Excel Format</span>
+        </div>
+        <div class="mu-dropdown-item">
+          <i class="icon-printer"></i>
+          <span>Print Report</span>
+        </div>
+        <div class="mu-dropdown-divider"></div>
+        <div class="mu-dropdown-item">
+          <i class="icon-settings"></i>
+          <span>Export Settings</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock%}

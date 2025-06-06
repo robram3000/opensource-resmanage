@@ -31,5 +31,10 @@ def booking_calendar():
 def stocks_level():
     return render_template('pages/adm/inventorymanagement/stocklevels.html')
 
+
+@admin.route('/menu-management', methods = ['GET','POS'] )
+def menu_management():
+    
+    return render_template('pages/adm/menumanagement/menu.html')
 def init_app(app):
     app.register_blueprint(admin)

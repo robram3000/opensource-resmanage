@@ -6,12 +6,6 @@
 @use 'sass:map';
 @use 'sass:color';
 
-.user-management-container {
-  background-color: var(--surface-color);
-  border-radius: --border-radius;
-  padding: map.get($spacers, 4);
-  @include shadow('sm');
-}
 
 .management-header {
   display: flex;
