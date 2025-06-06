@@ -1,14 +1,16 @@
 from flask import Flask
 from routes import init_routes
-import secrets
-app = Flask(__name__,
+from flask_sqlalchemy import SQLAlchemy
+import confi 
+
+wa_pos = Flask(__name__,
             template_folder="templates",
             static_folder="static")
-init_routes(app)
 
-secrets_key = secrets.token_hex(16)
-app.config['SECRET_KEY'] = secrets_key
+wa_pos.config.from_object(confi.Config)
+init_routes(wa_pos)
+db = SQLAlchemy(wa_pos)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    wa_pos.run(debug=True)
