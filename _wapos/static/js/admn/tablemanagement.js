@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const elementOptions = document.querySelectorAll('.element-option');
     const toastContainer = document.getElementById('toastContainer');
     const saveModal = document.getElementById('saveModal');
-    
-    // State management
     let draggedItem = null;
     let selectedItem = null;
     let currentZoom = 100;
@@ -16,8 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
     let snapToGrid = true;
     let gridSize = 20;
     let rotationAngle = 0;
-    
-    // Undo/Redo stack
     let undoStack = [];
     let redoStack = [];
     let maxUndoSteps = 50;

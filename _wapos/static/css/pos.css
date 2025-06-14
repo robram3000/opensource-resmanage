@@ -1,0 +1,18 @@
+/* Error: $color: --warning-color is not a color.
+ *     ,
+ * 347 |             background-color: color.adjust(--warning-color, $lightness: 90%);
+ *     |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *     '
+ *   _wapos\static\scss\pos\component\pows.scss 347:31  @use
+ *   _wapos\static\scss\pos.scss 2:1                    root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: $color: --warning-color is not a color.\a     \2577 \a 347 \2502              background-color: color.adjust(--warning-color, $lightness: 90%);\d\a     \2502                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\a     \2575 \a   _wapos\\static\\scss\\pos\\component\\pows.scss 347:31  @use\a   _wapos\\static\\scss\\pos.scss 2:1                    root stylesheet";
+}

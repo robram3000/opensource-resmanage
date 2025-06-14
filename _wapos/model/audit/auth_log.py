@@ -1,5 +1,6 @@
 from datetime import datetime
 from extension.database_extension import db
+from ..core.user import User
 
 class AuthenticationLog(db.Model):
     __tablename__ = 'authentication_logs'
@@ -13,9 +14,7 @@ class AuthenticationLog(db.Model):
     
     # Relationships
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User')
+    user = db.relationship('User', backref=db.backref('auth_logs', lazy='dynamic'))
 
     def __repr__(self):
         return f"<AuthenticationLog {self.auth_id} {self.user_id} {self.action}>"
-    
-    

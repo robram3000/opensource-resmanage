@@ -16,11 +16,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     
-
     role_id = db.Column(db.Integer, db.ForeignKey('roles.role_id'))
     role = db.relationship('Role', back_populates='users')
-    orders = db.relationship('Order', back_populates='user')
-    inventory_transactions = db.relationship('InventoryTransaction', back_populates='user')
     
     def get_id(self):
         return str(self.user_id)
@@ -30,3 +27,6 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def __repr__(self):
+        return f"<User {self.user_id} {self.email}>"

@@ -1,5 +1,7 @@
 from datetime import datetime
 from extension.database_extension import db
+from .order import Order
+from .user import User
 
 class Payment(db.Model):
     __tablename__ = 'payments'
@@ -16,3 +18,8 @@ class Payment(db.Model):
     # Relationships
     order_id = db.Column(db.Integer, db.ForeignKey('orders.order_id'))
     order = db.relationship('Order', back_populates='payments')
+    processor = db.relationship('User', foreign_keys=[processed_by], backref=db.backref('processed_payments', lazy='dynamic'))
+    approver = db.relationship('User', foreign_keys=[refund_approver], backref=db.backref('approved_refunds', lazy='dynamic'))
+
+    def __repr__(self):
+        return f"<Payment {self.payment_id} {self.payment_method} {self.amount}>"

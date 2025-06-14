@@ -1,5 +1,6 @@
 from datetime import datetime
 from extension.database_extension import db
+from ..core.user import User
 
 class SystemActivityLog(db.Model):
     __tablename__ = 'system_activity_logs'
@@ -16,4 +17,7 @@ class SystemActivityLog(db.Model):
     
     # Relationships
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User')
+    user = db.relationship('User', backref=db.backref('activity_logs', lazy='dynamic'))
+
+    def __repr__(self):
+        return f"<SystemActivityLog {self.log_id} {self.activity_type}>"

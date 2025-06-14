@@ -13,6 +13,9 @@ class Customer(db.Model):
     address = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
+    # Relationships
+    orders = db.relationship('Order', back_populates='customer', cascade='all, delete-orphan')
+    reservations = db.relationship('Reservation', back_populates='customer', cascade='all, delete-orphan')
 
-    orders = db.relationship('Order', back_populates='customer')
-    reservations = db.relationship('Reservation', back_populates='customer')
+    def __repr__(self):
+        return f"<Customer {self.customer_id} {self.first_name} {self.last_name}>"

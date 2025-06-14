@@ -9,4 +9,7 @@ class Role(db.Model):
     permissions = db.Column(db.JSON)
     
     # Relationships
-    users = db.relationship('User', back_populates='role')
+    users = db.relationship('User', back_populates='role', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f"<Role {self.role_id} {self.role_name}>"

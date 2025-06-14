@@ -1,5 +1,6 @@
 from datetime import datetime
 from extension.database_extension import db
+from ..core.user import User
 
 class DataChangeLog(db.Model):
     __tablename__ = 'data_change_logs'
@@ -13,7 +14,7 @@ class DataChangeLog(db.Model):
     
     # Relationships
     changed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User')
+    user = db.relationship('User', backref=db.backref('data_changes', lazy='dynamic'))
 
     def __repr__(self):
         return f"<DataChangeLog {self.change_id} {self.table_name}.{self.record_id}>"

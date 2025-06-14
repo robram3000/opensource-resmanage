@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ticks: {
             color: getComputedStyle(document.documentElement).getPropertyValue('--text-secondary'),
             callback: function(value) {
-              return '$' + value.toLocaleString();
+              return '' + value.toLocaleString();
             }
           }
         }

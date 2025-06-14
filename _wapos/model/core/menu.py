@@ -8,7 +8,10 @@ class MenuCategory(db.Model):
     description = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True)
     
-    items = db.relationship('MenuItem', back_populates='category')
+    items = db.relationship('MenuItem', back_populates='category', cascade='all, delete-orphan')
+
+    def __repr__(self):
+        return f"<MenuCategory {self.category_id} {self.name}>"
 
 class MenuItem(db.Model):
     __tablename__ = 'menu_items'
@@ -25,5 +28,8 @@ class MenuItem(db.Model):
     # Relationships
     category_id = db.Column(db.Integer, db.ForeignKey('menu_categories.category_id'))
     category = db.relationship('MenuCategory', back_populates='items')
-    order_items = db.relationship('OrderItem', back_populates='item')
-    ingredients = db.relationship('ItemIngredient', back_populates='item')
+    order_items = db.relationship('OrderItem', back_populates='item', cascade='all, delete-orphan')
+    ingredients = db.relationship('Ingredient', secondary='menu_item_ingredients', back_populates='menu_items')
+
+    def __repr__(self):
+        return f"<MenuItem {self.item_id} {self.name}>"

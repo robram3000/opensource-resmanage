@@ -1,0 +1,134 @@
+<div class="pos-content-wrapper">
+    <!-- Category Navigation -->
+    <div class="pos-categories">
+        <div class="category-scroller">
+            <button class="category-btn active" data-category="all">
+                <div class="category-icon">
+                    <i class="fas fa-border-all"></i>
+                </div>
+                <span>All Items</span>
+            </button>
+            <button class="category-btn" data-category="food">
+                <div class="category-icon">
+                    <i class="fas fa-utensils"></i>
+                </div>
+                <span>Food</span>
+            </button>
+            <button class="category-btn" data-category="drinks">
+                <div class="category-icon">
+                    <i class="fas fa-glass-cheers"></i>
+                </div>
+                <span>Drinks</span>
+            </button>
+            <button class="category-btn" data-category="desserts">
+                <div class="category-icon">
+                    <i class="fas fa-ice-cream"></i>
+                </div>
+                <span>Desserts</span>
+            </button>
+            <button class="category-btn" data-category="specials">
+                <div class="category-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <span>Specials</span>
+            </button>
+            <button class="category-btn" data-category="alcohol">
+                <div class="category-icon">
+                    <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <span>Alcohol</span>
+            </button>
+            <button class="category-btn" data-category="apps">
+                <div class="category-icon">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <span>Appetizers</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="pos-controls">
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search menu items..." class="search-input">
+            <button class="search-filter-btn">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+        <div class="quick-filters">
+            <button class="filter-chip active">All</button>
+            <button class="filter-chip">
+                <i class="fas fa-fire"></i>
+                Popular
+            </button>
+            <button class="filter-chip">
+                <i class="fas fa-leaf"></i>
+                Vegetarian
+            </button>
+            <button class="filter-chip">
+                <i class="fas fa-seedling"></i>
+                Vegan
+            </button>
+            <button class="filter-chip">
+                <i class="fas fa-pepper-hot"></i>
+                Spicy
+            </button>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="pos-product-grid">
+        <!-- Product Card 1 -->
+        <div class="product-card" data-category="food">
+            <div class="product-badge bestseller">
+                <i class="fas fa-crown"></i>
+                Bestseller
+            </div>
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                <button class="quick-add-btn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="product-details">
+                <h3 class="product-name">Margherita Pizza</h3>
+                <p class="product-description">Classic tomato sauce, fresh mozzarella, and basil on our signature crust</p>
+                <div class="product-meta">
+                    <span class="product-price">$14.99</span>
+                    <div class="product-tags">
+                        <span class="product-tag vegetarian">
+                            <i class="fas fa-leaf"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Card 2 -->
+        <div class="product-card" data-category="drinks">
+            <div class="product-badge new">
+                <i class="fas fa-certificate"></i>
+                New
+            </div>
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1551029506-0807df4e2031?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">
+                <button class="quick-add-btn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="product-details">
+                <h3 class="product-name">Iced Matcha Latte</h3>
+                <p class="product-description">Premium ceremonial grade matcha with your choice of milk</p>
+                <div class="product-meta">
+                    <span class="product-price">$5.99</span>
+                    <div class="product-tags">
+                        <span class="product-tag customizable">
+                            <i class="fas fa-tools"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More product cards... -->
+    </div>
+</div>

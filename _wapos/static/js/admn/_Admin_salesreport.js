@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
           ticks: {
             color: getCssVar('--text-secondary'),
             callback: function(value) {
-              return `$${value.toLocaleString()}`;
+              return `${value.toLocaleString()}`;
             }
           },
           grid: {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NexusPOS | Modern Point of Sale{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pos.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- App Header -->
+        {% include "pages/staff/partials/header.html" %}
+        
+        <div class="app-body">
+            <!-- Left Sidebar - Tables/Status -->
+            {% include "pages/staff/partials/leftsidebar.html" %}
+            
+            <!-- Main Content Area -->
+            <main class="content-area">
+                <!-- Subheader with POS Actions -->
+                {% include "pages/staff/partials/subheader.html" %}
+                
+                <!-- Product Display -->
+                {% include "pages/staff/partials/content.html" %}
+            </main>
+            
+            <!-- Right Sidebar - Order Summary -->
+            {% include "pages/staff/partials/sidebar.html" %}
+        </div>
+        
+        <!-- Footer -->
+        {% include "pages/staff/partials/footer.html" %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/staff/toggle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/staff/pos.js') }}"></script>
+</body>
+</html>

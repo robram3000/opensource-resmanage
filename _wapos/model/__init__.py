@@ -1,46 +1,23 @@
+
+# Import all models
 from .core import (
-    User,
-    Role,
-    Customer,
-    MenuCategory,
-    MenuItem,
-    Ingredient,
-    Supplier,
-    Order,
-    OrderItem,
-    Table,
-    Reservation,
-    Payment
+    User, Role, Customer, MenuCategory, MenuItem,
+    Ingredient, Supplier, InventoryTransaction, Order, OrderItem,
+    Table, Reservation, Payment
 )
 
-from .audit import  (SystemActivityLog, 
-                     DataChangeLog, 
-                     AuthenticationLog,
-                     FinancialAuditLog,
-                     InventoryAdjustmentLog)
+from .audit import (
+    SystemActivityLog, DataChangeLog, AuthenticationLog,
+    FinancialAuditLog, InventoryAdjustmentLog
+)
 
 __all__ = [
-    'User',
-    'Role',
-    'Customer',
-    'MenuCategory',
-    'MenuItem',
-    'Ingredient',
-    'Supplier',
-    'Order',
-    'OrderItem',
-    'Table',
-    'Reservation',
-    'Payment',
-    'SystemActivityLog',
-    'DataChangeLog',
-    'AuthenticationLog',
-    'FinancialAuditLog',
-    'InventoryAdjustmentLog'
+    # Core models
+    'User', 'Role', 'Customer', 'MenuCategory', 'MenuItem',
+    'Ingredient', 'Supplier', 'InventoryTransaction', 'Order', 'OrderItem',
+    'Table', 'Reservation', 'Payment',
+    
+    # Audit models
+    'SystemActivityLog', 'DataChangeLog', 'AuthenticationLog',
+    'FinancialAuditLog', 'InventoryAdjustmentLog'
 ]
-
-def init_app(app):
-    from extension.database_extension import db
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()

@@ -1,5 +1,7 @@
 from datetime import datetime
 from extension.database_extension import db
+from ..core.user import User
+from ..core.payment import Payment
 
 class FinancialAuditLog(db.Model):
     __tablename__ = 'financial_audit_logs'
@@ -13,6 +15,9 @@ class FinancialAuditLog(db.Model):
     
     # Relationships
     payment_id = db.Column(db.Integer, db.ForeignKey('payments.payment_id'))
-    payment = db.relationship('Payment')
+    payment = db.relationship('Payment', backref=db.backref('audit_logs', lazy='dynamic'))
     changed_by = db.Column(db.Integer, db.ForeignKey('users.user_id'))
-    user = db.relationship('User')
+    user = db.relationship('User', backref=db.backref('financial_audits', lazy='dynamic'))
+
+    def __repr__(self):
+        return f"<FinancialAuditLog {self.audit_id} for payment {self.payment_id}>"

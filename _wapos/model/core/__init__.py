@@ -2,7 +2,7 @@ from .user import User
 from .role import Role
 from .customer import Customer
 from .menu import MenuCategory, MenuItem
-from .inventory import Ingredient, Supplier
+from .inventory import Ingredient, Supplier, InventoryTransaction, menu_item_ingredients
 from .order import Order, OrderItem
 from .table import Table
 from .reservation import Reservation
@@ -16,6 +16,8 @@ __all__ = [
     'MenuItem',
     'Ingredient',
     'Supplier',
+    'InventoryTransaction',
+    'menu_item_ingredients',
     'Order',
     'OrderItem',
     'Table',

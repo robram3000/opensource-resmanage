@@ -1,0 +1,63 @@
+<header class="app-header">
+    <div class="header-left">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fas fa-cash-register"></i>
+            </div>
+            <h1 class="logo-text">Nexus<span>POS</span></h1>
+        </div>
+        <div class="current-session">
+            <div class="session-info">
+                <i class="fas fa-user-shield"></i>
+                <span>Admin</span>
+            </div>
+            <div class="session-info">
+                <i class="fas fa-store"></i>
+                <span>Main Location</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="header-right">
+        <button class="header-action" id="quick-cash" title="Quick Cash">
+            <i class="fas fa-bolt"></i>
+        </button>
+        <button class="header-action" id="fullscreen-toggle" title="Toggle Fullscreen">
+            <i class="fas fa-expand"></i>
+        </button>
+        <div class="theme-toggle-container">
+            <button class="theme-toggle" id="themeToggle">
+                <span class="dark-icon"><i class="fas fa-moon"></i></span>
+                <span class="light-icon"><i class="fas fa-sun"></i></span>
+            </button>
+        </div>
+        <div class="user-menu">
+            <button class="user-avatar" id="userMenuButton">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff" alt="User Avatar">
+            </button>
+            <div class="user-dropdown" id="userDropdown">
+                <div class="dropdown-header">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=6366f1&color=fff" alt="User Avatar">
+                    <div>
+                        <h4>Admin User</h4>
+                        <small>Manager</small>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-user-cog"></i> Account Settings
+                </a>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-sliders-h"></i> POS Preferences
+                </a>
+                <a href="#" class="dropdown-item">
+                    <i class="fas fa-question-circle"></i> Help Center
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="#" class="dropdown-item logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
+</header>

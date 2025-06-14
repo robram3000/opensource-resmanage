@@ -2,7 +2,7 @@ from flask import Blueprint
 
 routes = Blueprint('routes', __name__)
 
-from . import auth_routes , admin_routes
+from . import auth_routes , admin_routes , pos_routes
 
 def init_routes(app):
     """
@@ -10,4 +10,5 @@ def init_routes(app):
     """
     admin_routes.init_app(app)
     auth_routes.init_app(app) 
+    pos_routes.init_app(app)
     app.register_blueprint(routes)
